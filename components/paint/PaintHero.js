@@ -4,18 +4,11 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getFeaturedProduct } from '../../data/paintProducts'
+import { HERO_BG_PAINT, HERO_PAINT_IMAGES } from '../../data/paintImages'
 import { Droplets, Shield, Factory } from 'lucide-react'
 import { useLanguage } from '../../context/LanguageContext'
 
 const featured = getFeaturedProduct()
-
-const HERO_BG = 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=1920&q=85'
-const HERO_IMAGES = [
-  'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&q=80',
-  'https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=600&q=80',
-  'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&q=80',
-  'https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=400&q=80',
-]
 
 export default function PaintHero() {
   const { t } = useLanguage()
@@ -25,7 +18,7 @@ export default function PaintHero() {
       {/* Full-bleed background image */}
       <div className="absolute inset-0">
         <Image
-          src={HERO_BG}
+          src={HERO_BG_PAINT}
           alt=""
           fill
           className="object-cover"
@@ -42,16 +35,16 @@ export default function PaintHero() {
       {/* Decorative images - scattered */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[12%] right-[8%] w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden border border-slate-600/50 shadow-2xl opacity-80">
-          <Image src={HERO_IMAGES[0]} alt="" fill className="object-cover" sizes="160px" />
+          <Image src={HERO_PAINT_IMAGES[0]} alt="" fill className="object-cover" sizes="160px" />
         </div>
         <div className="absolute bottom-[20%] right-[4%] w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden border border-slate-600/50 shadow-xl opacity-70">
-          <Image src={HERO_IMAGES[1]} alt="" fill className="object-cover" sizes="112px" />
+          <Image src={HERO_PAINT_IMAGES[1]} alt="" fill className="object-cover" sizes="112px" />
         </div>
-        <div className="absolute top-[30%] left-[2%] w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden border border-teal-500/30 shadow-xl opacity-60">
-          <Image src={HERO_IMAGES[2]} alt="" fill className="object-cover" sizes="96px" />
+        <div className="absolute top-[30%] left-[2%] w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden border border-amber-500/30 shadow-xl opacity-60">
+          <Image src={HERO_PAINT_IMAGES[2]} alt="" fill className="object-cover" sizes="96px" />
         </div>
         <div className="absolute bottom-[30%] left-[10%] w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden border border-slate-600/50 shadow-xl opacity-75">
-          <Image src={HERO_IMAGES[3]} alt="" fill className="object-cover" sizes="128px" />
+          <Image src={HERO_PAINT_IMAGES[3]} alt="" fill className="object-cover" sizes="128px" />
         </div>
       </div>
 
@@ -133,7 +126,7 @@ export default function PaintHero() {
           >
             <div className="relative rounded-2xl overflow-hidden border border-slate-600/50 shadow-2xl aspect-[4/3] max-h-[280px] sm:max-h-[320px]">
               <Image
-                src={HERO_IMAGES[0]}
+                src={HERO_PAINT_IMAGES[0]}
                 alt="Industrial coatings"
                 fill
                 className="object-cover"
@@ -142,7 +135,7 @@ export default function PaintHero() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4">
-                <p className="text-teal-400 text-xs font-semibold uppercase tracking-wider">{t('hero.featured')}</p>
+                <p className="text-amber-400 text-xs font-semibold uppercase tracking-wider">{t('hero.featured')}</p>
                 <h2 className="text-xl sm:text-2xl font-bold text-white">{featured.name}</h2>
                 <p className="text-slate-300 text-sm">{featured.tagline}</p>
               </div>

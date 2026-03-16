@@ -2,15 +2,26 @@
 
 import Modal from '../Modal'
 import { Droplets } from 'lucide-react'
+import { useLanguage } from '../../context/LanguageContext'
+import { getProductContent } from '../../lib/productTranslations'
 
 export default function ProductModal({ product, isOpen, onClose }) {
+  const { locale, t } = useLanguage()
   if (!product) return null
+
+  const content = getProductContent(product.id, locale)
+  const name = content?.name ?? product.name
+  const tagline = content?.tagline ?? product.tagline
+  const fullDescription = content?.fullDescription ?? product.fullDescription
+  const applications = content?.applications ?? product.applications ?? []
+  const industries = content?.industries ?? product.industries ?? []
+  const specs = content?.specs ?? product.specs ?? {}
 
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title={product.name}
+      title={name}
       showCloseButton={true}
       size="lg"
       closeOnOverlayClick={true}
@@ -23,15 +34,17 @@ export default function ProductModal({ product, isOpen, onClose }) {
             <Droplets className="w-4 h-4" />
             {product.size}
           </div>
-          <p className="text-slate-600 mt-1">{product.tagline}</p>
+          <p className="text-slate-600 mt-1">{tagline}</p>
         </div>
 
-        <p className="text-slate-700 leading-relaxed">{product.fullDescription}</p>
+        <p className="text-slate-700 leading-relaxed">{fullDescription}</p>
 
         <div>
-          <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-2">Applications</h3>
+          <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-2">
+            {t('products.applications')}
+          </h3>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-slate-600 text-sm">
-            {product.applications.map((app, i) => (
+            {applications.map((app, i) => (
               <li key={i} className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-teal-500" />
                 {app}
@@ -41,9 +54,11 @@ export default function ProductModal({ product, isOpen, onClose }) {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-2">Industries</h3>
+          <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-2">
+            {t('products.industries')}
+          </h3>
           <div className="flex flex-wrap gap-2">
-            {product.industries.map((ind, i) => (
+            {industries.map((ind, i) => (
               <span
                 key={i}
                 className="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-sm font-medium"
@@ -55,12 +70,14 @@ export default function ProductModal({ product, isOpen, onClose }) {
         </div>
 
         <div className="rounded-xl bg-slate-50 border border-slate-200 p-4">
-          <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-3">Specifications</h3>
+          <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-3">
+            {t('products.specifications')}
+          </h3>
           <dl className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
-            <div><dt className="text-slate-500">Coverage</dt><dd className="font-medium text-slate-800">{product.specs.coverage}</dd></div>
-            <div><dt className="text-slate-500">Dry time</dt><dd className="font-medium text-slate-800">{product.specs.dryTime}</dd></div>
-            <div><dt className="text-slate-500">Recoat window</dt><dd className="font-medium text-slate-800">{product.specs.recoatWindow}</dd></div>
-            <div><dt className="text-slate-500">Base</dt><dd className="font-medium text-slate-800">{product.specs.base}</dd></div>
+            <div><dt className="text-slate-500">{t('products.coverage')}</dt><dd className="font-medium text-slate-800">{specs.coverage}</dd></div>
+            <div><dt className="text-slate-500">{t('products.dryTime')}</dt><dd className="font-medium text-slate-800">{specs.dryTime}</dd></div>
+            <div><dt className="text-slate-500">{t('products.recoatWindow')}</dt><dd className="font-medium text-slate-800">{specs.recoatWindow}</dd></div>
+            <div><dt className="text-slate-500">{t('products.base')}</dt><dd className="font-medium text-slate-800">{specs.base}</dd></div>
           </dl>
         </div>
       </div>

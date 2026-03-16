@@ -1,12 +1,12 @@
-import { Poppins } from 'next/font/google'
+import { DM_Sans } from 'next/font/google'
 import '../styles/globals.css'
 import { PaintProviders } from '../components/paint/Providers'
 
-const poppins = Poppins({ 
+const dmSans = DM_Sans({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-poppins',
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-dm-sans',
+  weight: ['400', '500', '600', '700'],
 })
 
 export const metadata = {
@@ -27,8 +27,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={poppins.variable}>
-      <body className={`${poppins.className} antialiased bg-slate-900 text-slate-100`}>
+    <html lang="en" className={dmSans.variable}>
+      <body className={`${dmSans.className} antialiased bg-slate-900 text-slate-100`}>
         <PaintProviders>{children}</PaintProviders>
       </body>
     </html>

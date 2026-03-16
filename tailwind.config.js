@@ -20,9 +20,14 @@ module.exports = {
           800: '#1e40af',
           900: '#1e3a8a',
         },
+        paint: {
+          amber: '#f59e0b',
+          'amber-light': '#fbbf24',
+          'amber-dark': '#d97706',
+        },
       },
       fontFamily: {
-        sans: ['var(--font-poppins)', 'Poppins', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-dm-sans)', 'DM Sans', 'system-ui', 'sans-serif'],
       },
       keyframes: {
         shimmer: {

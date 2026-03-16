@@ -4,10 +4,15 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Droplets, ChevronRight } from 'lucide-react'
 import { useLanguage } from '../../context/LanguageContext'
+import { getProductContent } from '../../lib/productTranslations'
+import { PAINT_BOX_IMAGES } from '../../data/paintImages'
 
 export default function ProductCard({ product, onClick }) {
-  const { t } = useLanguage()
-  const image = product.image || 'https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=400&q=80'
+  const { t, locale } = useLanguage()
+  const content = getProductContent(product.id, locale)
+  const name = content?.name ?? product.name
+  const shortDescription = content?.shortDescription ?? product.shortDescription
+  const image = product.image || PAINT_BOX_IMAGES[0]
 
   return (
     <motion.button
@@ -21,7 +26,7 @@ export default function ProductCard({ product, onClick }) {
       <div className="relative w-full h-[160px] flex-shrink-0 bg-slate-700/50">
         <Image
           src={image}
-          alt={product.name}
+          alt={name}
           fill
           className="object-cover"
           sizes="280px"
@@ -37,10 +42,10 @@ export default function ProductCard({ product, onClick }) {
       {/* Fixed-height content – same size for all cards */}
       <div className="flex flex-col flex-1 min-h-0 p-4 sm:p-5">
         <h3 className="text-lg font-bold text-white mb-2 group-hover:text-teal-400/90 transition-colors line-clamp-2">
-          {product.name}
+          {name}
         </h3>
         <p className="text-slate-400 text-sm leading-relaxed mb-4 line-clamp-2 flex-1 min-h-0">
-          {product.shortDescription}
+          {shortDescription}
         </p>
         <span className="text-teal-400 text-sm font-medium inline-flex items-center gap-1 mt-auto">
           {t('products.viewDetails')}

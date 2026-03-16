@@ -13,7 +13,7 @@ const LanguageContext = createContext({
 })
 
 export function LanguageProvider({ children }) {
-  const [locale, setLocaleState] = useState('en')
+  const [locale, setLocaleState] = useState('ar')
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -40,13 +40,17 @@ export function LanguageProvider({ children }) {
     document.documentElement.setAttribute('lang', lang)
   }, [locale, mounted])
 
-  const t = (key) => {
+  const t = (key, vars = {}) => {
     const keys = key.split('.')
     let obj = translations[locale] || translations.en
     for (const k of keys) {
       obj = obj?.[k]
     }
-    return obj ?? key
+    let str = typeof obj === 'string' ? obj : (obj ?? key)
+    Object.keys(vars).forEach((v) => {
+      str = str.replace(new RegExp(`{{${v}}}`, 'g'), vars[v])
+    })
+    return str
   }
 
   return (

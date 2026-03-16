@@ -1,7 +1,8 @@
 import PaintNavbar from '../components/paint/Navbar'
 import PaintHero from '../components/paint/PaintHero'
-import ProductCarousel from '../components/paint/ProductCarousel'
+import ProductsBySizeSection from '../components/paint/ProductsBySizeSection'
 import ContactSection from '../components/paint/ContactSection'
+import BucketRangesSection from '../components/paint/BucketRangesSection'
 import PaintFooter from '../components/paint/Footer'
 
 export const metadata = {
@@ -21,8 +22,9 @@ export default function Home() {
     <main className="min-h-screen bg-slate-900">
       <PaintNavbar />
       <PaintHero />
-      <ProductCarousel />
+      <ProductsBySizeSection />
       <ContactSection />
+      <BucketRangesSection />
       <PaintFooter />
     </main>
   )
