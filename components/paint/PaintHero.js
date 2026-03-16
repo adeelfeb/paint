@@ -14,7 +14,7 @@ export default function PaintHero() {
   const { t } = useLanguage()
 
   return (
-    <section className="relative min-h-[72vh] sm:min-h-[75vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[50vh] sm:min-h-[55vh] flex items-center overflow-hidden">
       {/* Full-bleed background image */}
       <div className="absolute inset-0">
         <Image

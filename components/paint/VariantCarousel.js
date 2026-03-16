@@ -1,16 +1,18 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { useLanguage } from '../../context/LanguageContext'
 import { getVariantsForSize } from '../../data/paintVariants'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import VariantDetailModal from './VariantDetailModal'
 
 const CARD_WIDTH = 160
 const CARD_GAP = 16
 
 export default function VariantCarousel({ sizeId }) {
   const scrollRef = useRef(null)
+  const [selectedVariant, setSelectedVariant] = useState(null)
   const { locale, t } = useLanguage()
   const variants = getVariantsForSize(sizeId)
   const isAr = locale === 'ar'
@@ -50,12 +52,13 @@ export default function VariantCarousel({ sizeId }) {
       >
         <div className="flex gap-4 min-w-max flex-shrink-0 mx-auto justify-center">
         {variants.map((v, i) => (
-          <div
+          <button
             key={`${sizeId}-${i}`}
-            role="presentation"
-            aria-hidden="true"
-            className="flex-shrink-0 rounded-xl overflow-hidden bg-slate-800/60 border border-slate-700/60 transition-colors snap-center pointer-events-none select-none"
+            type="button"
+            onClick={() => setSelectedVariant(v)}
+            className="flex-shrink-0 rounded-xl overflow-hidden bg-slate-800/60 border border-slate-700/60 hover:border-teal-500/50 transition-colors snap-center text-left cursor-pointer focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-slate-900"
             style={{ width: CARD_WIDTH }}
+            aria-label={isAr ? v.nameAr : v.nameEn}
           >
             <div className="relative aspect-square bg-slate-700/50">
               <Image
@@ -75,7 +78,7 @@ export default function VariantCarousel({ sizeId }) {
                 {v.color}
               </span>
             </div>
-          </div>
+          </button>
         ))}
         </div>
       </div>
@@ -115,6 +118,13 @@ export default function VariantCarousel({ sizeId }) {
           <ChevronRight className="w-5 h-5" />
         </button>
       </div>
+
+      <VariantDetailModal
+        variant={selectedVariant}
+        sizeId={sizeId}
+        isOpen={!!selectedVariant}
+        onClose={() => setSelectedVariant(null)}
+      />
     </div>
   )
 }

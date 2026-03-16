@@ -1,9 +1,4 @@
-import PaintNavbar from '../components/paint/Navbar'
-import PaintHero from '../components/paint/PaintHero'
-import ProductsBySizeSection from '../components/paint/ProductsBySizeSection'
-import ContactSection from '../components/paint/ContactSection'
-import BucketRangesSection from '../components/paint/BucketRangesSection'
-import PaintFooter from '../components/paint/Footer'
+import HomeContent from '../components/paint/HomeContent'
 
 export const metadata = {
   title: 'Paint Pro | Industrial Coatings • Corrosion Protection • Epoxy Systems',
@@ -20,12 +15,7 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="min-h-screen bg-slate-900">
-      <PaintNavbar />
-      <PaintHero />
-      <ProductsBySizeSection />
-      <ContactSection />
-      <BucketRangesSection />
-      <PaintFooter />
+      <HomeContent />
     </main>
   )
 }

@@ -3,28 +3,14 @@
 import { motion } from 'framer-motion'
 import { PRODUCT_SIZES, getProductById } from '../../data/paintProducts'
 import ProductCard from './ProductCard'
-import ProductModal from './ProductModal'
 import VariantCarousel from './VariantCarousel'
 import { useLanguage } from '../../context/LanguageContext'
-import { useState } from 'react'
-import { AnimatePresence } from 'framer-motion'
 
 const CARD_WIDTH = 280
 const CARD_HEIGHT = 400
 
-export default function ProductsBySizeSection() {
+export default function ProductsBySizeSection({ onProductClick }) {
   const { t } = useLanguage()
-  const [selectedProduct, setSelectedProduct] = useState(null)
-  const [modalOpen, setModalOpen] = useState(false)
-
-  const openModal = (product) => {
-    setSelectedProduct(product)
-    setModalOpen(true)
-  }
-  const closeModal = () => {
-    setModalOpen(false)
-    setSelectedProduct(null)
-  }
 
   return (
     <section id="products" className="relative bg-slate-900">
@@ -74,7 +60,7 @@ export default function ProductsBySizeSection() {
                     className="flex-shrink-0 order-last lg:order-none"
                     style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
                   >
-                    <ProductCard product={product} onClick={openModal} />
+                    <ProductCard product={product} onClick={onProductClick} />
                   </div>
                 </div>
               </motion.div>
@@ -82,14 +68,6 @@ export default function ProductsBySizeSection() {
           })}
         </div>
       </div>
-
-      <AnimatePresence>
-        <ProductModal
-          product={selectedProduct}
-          isOpen={modalOpen}
-          onClose={closeModal}
-        />
-      </AnimatePresence>
     </section>
   )
 }
