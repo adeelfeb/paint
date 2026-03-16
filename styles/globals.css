@@ -138,6 +138,15 @@ a:hover:not(nav a) {
   100% { background-position: 200% 0; }
 }
 
+/* Hide scrollbar for carousel / overflow sections */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 .skeleton-shimmer {
   background: linear-gradient(
     90deg,

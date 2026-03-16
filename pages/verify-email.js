@@ -1,8 +1,8 @@
 import { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Navbar from '../components/designndev/Navbar';
-import Footer from '../components/designndev/Footer';
+import Navbar from '../components/paint/Navbar';
+import Footer from '../components/paint/Footer';
 import { safeParseJsonResponse } from '../utils/safeJsonResponse';
 
 function formatErrorMessage(payload, fallback) {

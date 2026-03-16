@@ -1,18 +1,17 @@
-import Navbar from '../components/designndev/Navbar'
-import NBAHero from '../components/designndev/NBAHero'
-import NBAGamesList from '../components/designndev/NBAGamesList'
-import ContactForm from '../components/designndev/ContactForm'
-import Footer from '../components/designndev/Footer'
+import PaintNavbar from '../components/paint/Navbar'
+import PaintHero from '../components/paint/PaintHero'
+import ProductCarousel from '../components/paint/ProductCarousel'
+import ContactSection from '../components/paint/ContactSection'
+import PaintFooter from '../components/paint/Footer'
 
 export const metadata = {
-  title: 'NBA Games | Upcoming NBA Schedule, Scores & Standings',
-  description: 'Stay up to date with the latest NBA games. View upcoming schedule, scores, team records, venues, and broadcast channels. Mobile-friendly and always updated.',
-  keywords: 'NBA, basketball, schedule, scores, games, standings, ESPN',
+  title: 'Paint Pro | Industrial Coatings • Corrosion Protection • Epoxy Systems',
+  description: 'Arabic-based startup providing industrial paints and epoxy systems in 3 ML, 5 ML, 6 ML and more. Korean & American base. Quality coatings for industries.',
+  keywords: 'industrial coatings, corrosion protection, epoxy systems, paint, Arabic, industrial paint, 3ML, 5ML, 6ML',
   openGraph: {
-    title: 'NBA Games | Upcoming NBA Schedule, Scores & Standings',
-    description: 'Stay up to date with the latest NBA games. View upcoming schedule, scores, team records, venues, and broadcast channels.',
-    url: 'https://nba-games.example.com',
-    siteName: 'NBA Games',
+    title: 'Paint Pro | Industrial Coatings • Corrosion Protection • Epoxy Systems',
+    description: 'Arabic-based startup providing industrial paints and epoxy systems. Korean & American base formulations for industries.',
+    siteName: 'Paint Pro',
     type: 'website',
   },
 }
@@ -20,15 +19,11 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="min-h-screen bg-slate-900">
-      <Navbar />
-      <NBAHero />
-      <div id="games">
-        <NBAGamesList />
-      </div>
-      <div className="bg-slate-50">
-        <ContactForm />
-      </div>
-      <Footer />
+      <PaintNavbar />
+      <PaintHero />
+      <ProductCarousel />
+      <ContactSection />
+      <PaintFooter />
     </main>
   )
 }
