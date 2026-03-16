@@ -3,19 +3,24 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useLanguage } from '../../context/LanguageContext'
+
+const WHATSAPP_NUMBER = '9230999670475'
 
 function usePathname() {
   const [pathname, setPathname] = useState('')
   useEffect(() => {
-    if (typeof window !== 'undefined') setPathname(window.location.pathname)
-    const handlePop = () => setPathname(window.location.pathname)
-    window.addEventListener('popstate', handlePop)
+    setPathname(window.location.pathname)
+    const scheduleUpdate = () => {
+      queueMicrotask(() => setPathname(window.location.pathname))
+    }
+    window.addEventListener('popstate', scheduleUpdate)
     const origPush = history.pushState
     const origReplace = history.replaceState
-    history.pushState = (...args) => { origPush.apply(history, args); handlePop() }
-    history.replaceState = (...args) => { origReplace.apply(history, args); handlePop() }
+    history.pushState = (...args) => { origPush.apply(history, args); scheduleUpdate() }
+    history.replaceState = (...args) => { origReplace.apply(history, args); scheduleUpdate() }
     return () => {
-      window.removeEventListener('popstate', handlePop)
+      window.removeEventListener('popstate', scheduleUpdate)
       history.pushState = origPush
       history.replaceState = origReplace
     }
@@ -27,6 +32,7 @@ export default function PaintNavbar() {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { locale, setLocale, t } = useLanguage()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -36,13 +42,14 @@ export default function PaintNavbar() {
 
   const isActive = (href) => {
     if (href === '/') return pathname === '/'
+    if (href.startsWith('http')) return false
     return pathname.startsWith(href)
   }
 
   const navLinks = [
-    { href: '/', label: 'الرئيسية', labelEn: 'Home' },
-    { href: '/#products', label: 'المنتجات', labelEn: 'Products' },
-    { href: '/contact', label: 'اتصل بنا', labelEn: 'Contact' },
+    { href: '/', key: 'home' },
+    { href: '/#products', key: 'products' },
+    { href: `https://wa.me/${WHATSAPP_NUMBER}`, key: 'contact', external: true },
   ]
 
   return (
@@ -56,7 +63,7 @@ export default function PaintNavbar() {
         <div
           className={`flex items-center justify-between gap-4 rounded-xl px-3 sm:px-4 py-2.5 min-h-[52px] transition-all duration-300 ${
             scrolled
-              ? 'bg-slate-900/95 backdrop-blur-md shadow-lg border border-amber-900/30'
+              ? 'bg-slate-900/95 backdrop-blur-md shadow-lg border border-teal-900/30'
               : 'bg-slate-900/90 backdrop-blur-sm border border-slate-700/50'
           }`}
         >
@@ -65,42 +72,68 @@ export default function PaintNavbar() {
             className="text-lg sm:text-xl font-bold no-underline flex items-center gap-1.5 tracking-tight"
             aria-label="Home"
           >
-            <span className="text-amber-400">Paint</span>
+            <span className="text-teal-400">Paint</span>
             <span className="text-slate-300">Pro</span>
           </Link>
 
           <div className="hidden md:flex flex-1 justify-center">
             <div className="flex items-center gap-1 sm:gap-2">
-              {navLinks.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`px-3 py-2 text-sm font-medium rounded-lg transition-all no-underline ${
-                    isActive(item.href)
-                      ? 'text-amber-400 bg-amber-500/10'
-                      : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
-                  }`}
-                >
-                  {item.labelEn}
-                </Link>
-              ))}
+              {navLinks.map((item) =>
+                item.external ? (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-2 text-sm font-medium rounded-lg transition-all no-underline hover:no-underline focus:no-underline text-teal-400 bg-teal-500/10 hover:bg-teal-500/20 hover:text-teal-300"
+                  >
+                    {t(`nav.${item.key}`)}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`px-3 py-2 text-sm font-medium rounded-lg transition-all no-underline hover:no-underline focus:no-underline ${
+                      isActive(item.href)
+                        ? 'text-teal-400 bg-teal-500/10'
+                        : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
+                    }`}
+                  >
+                    {t(`nav.${item.key}`)}
+                  </Link>
+                )
+              )}
             </div>
           </div>
 
           <div className="flex items-center gap-2 flex-shrink-0">
             <div className="hidden md:flex items-center gap-2">
-              <Link
-                href="/login"
-                className="inline-flex items-center h-9 px-4 text-sm font-semibold text-white bg-amber-600 hover:bg-amber-500 rounded-lg no-underline transition-colors"
+              <a
+                href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center h-9 px-4 text-sm font-semibold text-white bg-teal-600 hover:bg-teal-500 rounded-lg no-underline hover:no-underline transition-colors"
               >
-                Login
-              </Link>
-              <Link
-                href="/dashboard"
-                className="inline-flex items-center h-9 px-4 text-sm font-semibold text-slate-200 bg-slate-700/80 hover:bg-slate-600 rounded-lg no-underline transition-colors border border-slate-600"
-              >
-                Dashboard
-              </Link>
+                {t('nav.contact')}
+              </a>
+              <div className="flex items-center rounded-lg border border-slate-600 overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => setLocale('en')}
+                  className={`px-2.5 py-1.5 text-xs font-medium transition-colors ${locale === 'en' ? 'bg-teal-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-700'}`}
+                  aria-label="English"
+                >
+                  EN
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLocale('ar')}
+                  className={`px-2.5 py-1.5 text-xs font-medium transition-colors ${locale === 'ar' ? 'bg-teal-600 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-700'}`}
+                  aria-label="العربية"
+                >
+                  عر
+                </button>
+              </div>
             </div>
             <button
               type="button"
@@ -130,33 +163,55 @@ export default function PaintNavbar() {
               className="md:hidden mt-2 overflow-hidden"
             >
               <div className="rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-700/50 shadow-xl py-2 px-2">
-                {navLinks.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`block px-3 py-2.5 text-sm font-medium rounded-lg no-underline ${
-                      isActive(item.href) ? 'text-amber-400 bg-amber-500/10' : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
-                    }`}
-                    onClick={() => setIsMenuOpen(false)}
+                {navLinks.map((item) =>
+                  item.external ? (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block px-3 py-2.5 text-sm font-medium rounded-lg no-underline hover:no-underline text-teal-400 bg-teal-500/10"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {t(`nav.${item.key}`)}
+                    </a>
+                  ) : (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`block px-3 py-2.5 text-sm font-medium rounded-lg no-underline hover:no-underline ${
+                        isActive(item.href) ? 'text-teal-400 bg-teal-500/10' : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {t(`nav.${item.key}`)}
+                    </Link>
+                  )
+                )}
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 block text-center py-2.5 text-sm font-semibold text-white bg-teal-600 hover:bg-teal-500 rounded-lg no-underline hover:no-underline"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {t('nav.contact')}
+                </a>
+                <div className="flex justify-center gap-2 mt-2">
+                  <button
+                    type="button"
+                    onClick={() => { setLocale('en'); setIsMenuOpen(false); }}
+                    className={`px-3 py-1.5 text-sm font-medium rounded-lg ${locale === 'en' ? 'bg-teal-600 text-white' : 'bg-slate-700 text-slate-400'}`}
                   >
-                    {item.labelEn}
-                  </Link>
-                ))}
-                <div className="flex gap-2 pt-2 mt-2 border-t border-slate-700/50 px-2">
-                  <Link
-                    href="/login"
-                    className="flex-1 text-center py-2.5 text-sm font-semibold text-white bg-amber-600 hover:bg-amber-500 rounded-lg no-underline"
-                    onClick={() => setIsMenuOpen(false)}
+                    English
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => { setLocale('ar'); setIsMenuOpen(false); }}
+                    className={`px-3 py-1.5 text-sm font-medium rounded-lg ${locale === 'ar' ? 'bg-teal-600 text-white' : 'bg-slate-700 text-slate-400'}`}
                   >
-                    Login
-                  </Link>
-                  <Link
-                    href="/dashboard"
-                    className="flex-1 text-center py-2.5 text-sm font-semibold text-slate-200 bg-slate-700 hover:bg-slate-600 rounded-lg no-underline border border-slate-600"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Dashboard
-                  </Link>
+                    العربية
+                  </button>
                 </div>
               </div>
             </motion.div>

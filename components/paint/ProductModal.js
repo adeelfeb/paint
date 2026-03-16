@@ -19,7 +19,7 @@ export default function ProductModal({ product, isOpen, onClose }) {
     >
       <div className="space-y-6">
         <div>
-          <div className="flex items-center gap-2 text-amber-600 font-semibold text-sm uppercase tracking-wider">
+          <div className="flex items-center gap-2 text-teal-600 font-semibold text-sm uppercase tracking-wider">
             <Droplets className="w-4 h-4" />
             {product.size}
           </div>
@@ -33,7 +33,7 @@ export default function ProductModal({ product, isOpen, onClose }) {
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-slate-600 text-sm">
             {product.applications.map((app, i) => (
               <li key={i} className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                <span className="w-1.5 h-1.5 rounded-full bg-teal-500" />
                 {app}
               </li>
             ))}

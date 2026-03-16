@@ -1,5 +1,6 @@
 import { Poppins } from 'next/font/google'
 import '../styles/globals.css'
+import { PaintProviders } from '../components/paint/Providers'
 
 const poppins = Poppins({ 
   subsets: ['latin'],
@@ -28,7 +29,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={poppins.variable}>
       <body className={`${poppins.className} antialiased bg-slate-900 text-slate-100`}>
-        {children}
+        <PaintProviders>{children}</PaintProviders>
       </body>
     </html>
   )

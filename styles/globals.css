@@ -32,16 +32,28 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* RTL + Arabic: use system fonts that support Arabic script */
+[dir="rtl"] body {
+  font-family: 'Segoe UI', 'Tahoma', 'Arial', 'Helvetica Neue', sans-serif;
+}
+
 a {
   color: var(--primary-color);
   text-decoration: none;
 }
 
-/* Prevent underlines on navbar links and logo */
+/* Prevent underlines on navbar, footer, and all button-style links */
 nav a,
 nav a:hover,
 nav a:focus,
-nav a:active {
+nav a:active,
+footer a,
+footer a:hover,
+footer a:focus,
+footer a:active,
+a.no-underline,
+a[href^="tel:"],
+a[href^="https://wa.me"] {
   text-decoration: none !important;
 }
 
@@ -156,5 +168,24 @@ a:hover:not(nav a) {
   );
   background-size: 200% 100%;
   animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+/* Carousel auto-scroll both directions */
+@keyframes carousel-scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes carousel-scroll-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+.carousel-auto-left {
+  animation: carousel-scroll-left 45s linear infinite;
+}
+.carousel-auto-right {
+  animation: carousel-scroll-right 45s linear infinite;
+}
+.carousel-auto-bidirectional {
+  animation: carousel-scroll-left 22s linear infinite alternate;
 }
 
