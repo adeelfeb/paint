@@ -10,17 +10,17 @@ const dmSans = DM_Sans({
 })
 
 export const metadata = {
-  title: 'Paint Pro | Industrial Coatings • Corrosion Protection • Epoxy Systems',
-  description: 'Arabic-based startup providing industrial paints and epoxy systems in 3 ML, 5 ML, 6 ML and more. Korean & American base. Quality coatings for industries.',
-  keywords: 'industrial coatings, corrosion protection, epoxy systems, paint, Arabic, industrial paint, 3ML, 5ML, 6ML',
+  title: 'MOHMMED AL HJOUJ FOR INVESTMENT SPC | Oil & Gas Capability Profile',
+  description: 'Industrial coatings, corrosion protection, and epoxy systems. Serving Oil & Gas, petrochemical, mining, defense, and infrastructure in Oman and the region.',
+  keywords: 'industrial coatings, corrosion protection, epoxy systems, oil and gas, Oman, UNICHEM, MOHMMED AL HJOUJ',
   icons: {
     icon: '/favicon.svg',
     apple: '/favicon.svg',
   },
   openGraph: {
-    title: 'Paint Pro | Industrial Coatings • Corrosion Protection • Epoxy Systems',
-    description: 'Arabic-based startup providing industrial paints and epoxy systems. Korean & American base formulations for industries.',
-    siteName: 'Paint Pro',
+    title: 'MOHMMED AL HJOUJ FOR INVESTMENT SPC | Oil & Gas Capability Profile',
+    description: 'Industrial coatings, corrosion protection, and epoxy systems. Sultanate of Oman.',
+    siteName: 'MOHMMED AL HJOUJ FOR INVESTMENT SPC',
     type: 'website',
   },
 }
@@ -28,7 +28,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={dmSans.variable}>
-      <body className={`${dmSans.className} antialiased bg-slate-900 text-slate-100`}>
+      <body className={`${dmSans.className} antialiased bg-white text-slate-800`}>
         <PaintProviders>{children}</PaintProviders>
       </body>
     </html>

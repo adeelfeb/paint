@@ -2,153 +2,84 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
-import { getFeaturedProduct } from '../../data/paintProducts'
-import { HERO_BG_PAINT, HERO_PAINT_IMAGES } from '../../data/paintImages'
-import { Droplets, Shield, Factory } from 'lucide-react'
-import { useLanguage } from '../../context/LanguageContext'
-
-const featured = getFeaturedProduct()
+import { FileText, Phone, Mail, MapPin } from 'lucide-react'
 
 export default function PaintHero() {
-  const { t } = useLanguage()
-
   return (
-    <section className="relative min-h-[50vh] sm:min-h-[55vh] flex items-center overflow-hidden">
-      {/* Full-bleed background image */}
-      <div className="absolute inset-0">
-        <Image
-          src={HERO_BG_PAINT}
-          alt=""
-          fill
-          className="object-cover"
-          sizes="100vw"
-          priority
-        />
-        <div className="absolute inset-0 bg-slate-900/75" />
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/60 via-slate-900/40 to-teal-900/20" />
-      </div>
-      {/* Subtle grid overlay */}
-      <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-teal-900/10" />
+    <section className="relative pt-24 sm:pt-28 pb-16 sm:pb-20 bg-gradient-to-b from-slate-50 to-white border-b border-slate-100">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="text-slate-500 font-semibold text-sm uppercase tracking-wider mb-2"
+        >
+          Oil & Gas Capability Profile
+        </motion.p>
+        <motion.h1
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.06 }}
+          className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 leading-tight tracking-tight mb-2"
+        >
+          MOHMMED AL HJOUJ FOR INVESTMENT SPC
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.12 }}
+          className="text-slate-600 text-base sm:text-lg mb-6"
+        >
+          Industrial Coatings • Corrosion Protection • Epoxy Systems
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.18 }}
+          className="text-slate-500 text-sm mb-8"
+        >
+          Sultanate of Oman
+        </motion.p>
 
-      {/* Decorative images - scattered */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[12%] right-[8%] w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden border border-slate-600/50 shadow-2xl opacity-80">
-          <Image src={HERO_PAINT_IMAGES[0]} alt="" fill className="object-cover" sizes="160px" />
-        </div>
-        <div className="absolute bottom-[20%] right-[4%] w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden border border-slate-600/50 shadow-xl opacity-70">
-          <Image src={HERO_PAINT_IMAGES[1]} alt="" fill className="object-cover" sizes="112px" />
-        </div>
-        <div className="absolute top-[30%] left-[2%] w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden border border-amber-500/30 shadow-xl opacity-60">
-          <Image src={HERO_PAINT_IMAGES[2]} alt="" fill className="object-cover" sizes="96px" />
-        </div>
-        <div className="absolute bottom-[30%] left-[10%] w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden border border-slate-600/50 shadow-xl opacity-75">
-          <Image src={HERO_PAINT_IMAGES[3]} alt="" fill className="object-cover" sizes="128px" />
-        </div>
-      </div>
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.24 }}
+          className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-slate-600"
+        >
+          <span className="flex items-center justify-center gap-2">
+            <span className="text-slate-400 font-medium">C.R. No.:</span> 1550745
+          </span>
+          <span className="flex items-center justify-center gap-2">
+            <MapPin className="w-4 h-4 text-slate-400" />
+            PC: 121 Mabela Industrial Area
+          </span>
+          <a href="tel:+96898539796" className="flex items-center gap-2 hover:text-slate-900 no-underline">
+            <Phone className="w-4 h-4 text-slate-400" />
+            +968 98539796
+          </a>
+          <a href="mailto:M-alhouj@hpc-om.com" className="flex items-center gap-2 hover:text-slate-900 no-underline">
+            <Mail className="w-4 h-4 text-slate-400" />
+            M-alhouj@hpc-om.com
+          </a>
+        </motion.div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-          <div className="relative z-10">
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="text-teal-400 font-semibold text-sm uppercase tracking-wider mb-3"
-            >
-              {t('hero.badge')}
-            </motion.p>
-            <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.08 }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight mb-4"
-            >
-              {t('hero.title')}{' '}
-              <span className="text-teal-400">{t('hero.titleHighlight')}</span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.15 }}
-              className="text-slate-400 text-base sm:text-lg max-w-lg mb-6"
-            >
-              {t('hero.subtitle')}
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.22 }}
-              className="flex flex-wrap gap-3"
-            >
-              <Link
-                href="/#products"
-                className="inline-flex items-center gap-2 px-5 py-3 bg-teal-500 hover:bg-teal-400 text-slate-900 font-semibold rounded-xl transition-all shadow-lg shadow-teal-500/25 hover:shadow-teal-400/30 no-underline"
-              >
-                <Droplets className="w-5 h-5" />
-                {t('hero.viewProducts')}
-              </Link>
-              <a
-                href="https://wa.me/9230999670475"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-xl border border-slate-600 transition-colors no-underline hover:no-underline"
-              >
-                {t('hero.getQuote')}
-              </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4, delay: 0.35 }}
-              className="mt-8 flex flex-wrap gap-6 text-slate-500 text-sm"
-            >
-              <span className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-teal-500/90" />
-                {t('hero.corrosionProtection')}
-              </span>
-              <span className="flex items-center gap-2">
-                <Factory className="w-4 h-4 text-teal-500/90" />
-                {t('hero.industryReady')}
-              </span>
-            </motion.div>
-          </div>
-
-          {/* Featured product + main image */}
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="relative z-10 flex flex-col gap-4"
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+          className="mt-10"
+        >
+          <Link
+            href="/pdf/capability-profile.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors no-underline"
           >
-            <div className="relative rounded-2xl overflow-hidden border border-slate-600/50 shadow-2xl aspect-[4/3] max-h-[280px] sm:max-h-[320px]">
-              <Image
-                src={HERO_PAINT_IMAGES[0]}
-                alt="Industrial coatings"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4">
-                <p className="text-amber-400 text-xs font-semibold uppercase tracking-wider">{t('hero.featured')}</p>
-                <h2 className="text-xl sm:text-2xl font-bold text-white">{featured.name}</h2>
-                <p className="text-slate-300 text-sm">{featured.tagline}</p>
-              </div>
-            </div>
-            <div className="rounded-xl bg-slate-800/60 border border-slate-700/60 p-4 sm:p-5 flex items-center gap-3">
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-teal-500/20 text-teal-400 font-medium text-sm">
-                <Droplets className="w-4 h-4" />
-                {featured.size}
-              </div>
-              <p className="text-slate-400 text-sm flex-1 line-clamp-1">{featured.shortDescription}</p>
-            </div>
-          </motion.div>
-        </div>
+            <FileText className="w-5 h-5" />
+            Download Capability Profile (PDF)
+          </Link>
+        </motion.div>
       </div>
     </section>
   )

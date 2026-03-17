@@ -9,6 +9,7 @@ import { useLanguage } from '../../context/LanguageContext'
 
 export default function ContactForm({ showHeading = true, theme = 'default' }) {
   const isPaint = theme === 'paint'
+  const isLight = theme === 'light' || theme === 'default'
   const { t } = useLanguage()
   const { execute: executeRecaptcha, isAvailable: recaptchaAvailable } = useRecaptcha()
   const [formData, setFormData] = useState({
@@ -65,7 +66,7 @@ export default function ContactForm({ showHeading = true, theme = 'default' }) {
   }
 
   return (
-    <section className={isPaint ? 'py-0' : 'py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white'}>
+    <section className={isPaint ? 'py-0' : 'py-12 md:py-16 bg-gradient-to-b from-slate-50 to-white'}>
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-w-0">
         {showHeading && (
           <motion.div
@@ -75,10 +76,10 @@ export default function ContactForm({ showHeading = true, theme = 'default' }) {
             transition={{ duration: 0.7 }}
             className="text-center mb-8"
           >
-            <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-4 ${isPaint ? 'text-white' : 'text-gray-900'}`}>
+            <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-4 ${isPaint ? 'text-white' : 'text-slate-900'}`}>
               Get In Touch
             </h2>
-            <p className={`text-base sm:text-lg px-1 ${isPaint ? 'text-slate-400' : 'text-gray-600'}`}>
+            <p className={`text-base sm:text-lg px-1 ${isPaint ? 'text-slate-400' : 'text-slate-600'}`}>
               Have a project in mind? Let's discuss how we can help bring your vision to life.
             </p>
           </motion.div>
@@ -93,7 +94,7 @@ export default function ContactForm({ showHeading = true, theme = 'default' }) {
           className={`relative rounded-2xl p-4 sm:p-6 md:p-8 w-full min-w-0 transition-shadow duration-300 ${
             isPaint
               ? 'bg-slate-800/80 border border-slate-600/60 shadow-xl shadow-black/20 backdrop-blur-sm'
-              : 'bg-white border border-gray-200 shadow-lg'
+              : 'bg-white border border-slate-200 shadow-lg'
           }`}
         >
           {isSubmitting && (
@@ -105,7 +106,7 @@ export default function ContactForm({ showHeading = true, theme = 'default' }) {
           <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6 relative">
             {/* Name Field */}
             <div className="min-w-0">
-              <label htmlFor="name" className={`block text-sm font-medium mb-2 ${isPaint ? 'text-slate-300' : 'text-gray-700'}`}>
+              <label htmlFor="name" className={`block text-sm font-medium mb-2 ${isPaint ? 'text-slate-300' : 'text-slate-700'}`}>
                 {isPaint ? t('contact.name') : 'Name'}
               </label>
               <input
@@ -118,7 +119,7 @@ export default function ContactForm({ showHeading = true, theme = 'default' }) {
                 className={`w-full min-w-0 max-w-full box-border px-3 py-2.5 sm:px-4 sm:py-3 border rounded-xl outline-none transition-all duration-200 text-base ${
                   isPaint
                     ? 'border-slate-600 bg-slate-900/50 text-white placeholder:text-slate-500 focus:ring-2 focus:ring-teal-500 focus:border-teal-500'
-                    : 'border-gray-300 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                    : 'border-slate-300 text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-slate-800 focus:border-slate-800'
                 }`}
                 placeholder={isPaint ? t('contact.namePlaceholder') : 'Your name'}
               />
@@ -126,7 +127,7 @@ export default function ContactForm({ showHeading = true, theme = 'default' }) {
 
             {/* Email Field */}
             <div className="min-w-0">
-              <label htmlFor="email" className={`block text-sm font-medium mb-2 ${isPaint ? 'text-slate-300' : 'text-gray-700'}`}>
+              <label htmlFor="email" className={`block text-sm font-medium mb-2 ${isPaint ? 'text-slate-300' : 'text-slate-700'}`}>
                 {isPaint ? t('contact.email') : 'Email'}
               </label>
               <input
@@ -139,7 +140,7 @@ export default function ContactForm({ showHeading = true, theme = 'default' }) {
                 className={`w-full min-w-0 max-w-full box-border px-3 py-2.5 sm:px-4 sm:py-3 border rounded-xl outline-none transition-all duration-200 text-base ${
                   isPaint
                     ? 'border-slate-600 bg-slate-900/50 text-white placeholder:text-slate-500 focus:ring-2 focus:ring-teal-500 focus:border-teal-500'
-                    : 'border-gray-300 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                    : 'border-slate-300 text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-slate-800 focus:border-slate-800'
                 }`}
                 placeholder={isPaint ? t('contact.emailPlaceholder') : 'your.email@example.com'}
               />
@@ -154,7 +155,7 @@ export default function ContactForm({ showHeading = true, theme = 'default' }) {
               className={`w-full min-w-0 px-4 py-3 sm:px-6 sm:py-3.5 rounded-xl font-semibold text-sm sm:text-base transition-all duration-300 flex items-center justify-center gap-2.5 disabled:opacity-70 disabled:cursor-not-allowed no-underline ${
                 isPaint
                   ? 'bg-teal-500 hover:bg-teal-400 text-slate-900 shadow-lg shadow-teal-500/25 hover:shadow-teal-400/30'
-                  : 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30'
+                  : 'bg-slate-800 hover:bg-slate-700 text-white shadow-lg'
               }`}
             >
               {isSubmitting ? (
