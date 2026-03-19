@@ -23,7 +23,7 @@ export default function ProductDetailClient() {
       <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
         <div className="text-center">
           <p className="text-slate-600 mb-4">Product not found.</p>
-          <Link href="/#products" className="text-slate-800 font-medium no-underline hover:underline">
+          <Link href="/products" className="text-slate-800 font-medium no-underline hover:underline">
             ← Back to products
           </Link>
         </div>
@@ -56,7 +56,7 @@ export default function ProductDetailClient() {
           className="mb-8"
         >
           <Link
-            href="/#products"
+            href="/products"
             className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 mb-6 no-underline text-sm font-medium"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -69,7 +69,7 @@ export default function ProductDetailClient() {
             {CATEGORY_IDS.map((catId) => (
               <Link
                 key={catId}
-                href={catId === 'all' ? '/#products' : `/products/${catId}`}
+                href={catId === 'all' ? '/products' : `/products/${catId}`}
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium no-underline transition-colors ${
                   catId === product.id
                     ? 'bg-slate-800 text-white'
@@ -160,13 +160,13 @@ export default function ProductDetailClient() {
 
             <div className="flex flex-wrap gap-3 pt-2">
               <Link
-                href="/#contact"
+                href="/company-contact"
                 className="inline-flex items-center gap-2 px-5 py-3 bg-slate-800 hover:bg-slate-700 text-white font-medium rounded-xl no-underline"
               >
                 {t('contact.getQuoteTitle')}
               </Link>
               <Link
-                href="/#products"
+                href="/products"
                 className="inline-flex items-center gap-2 px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 font-medium rounded-xl no-underline border border-slate-200"
               >
                 <Palette className="w-4 h-4" />

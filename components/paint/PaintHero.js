@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { FileText, Phone, Mail, MapPin } from 'lucide-react'
+import { CAPABILITY_PDF_PATH } from '../../lib/paintConstants'
 
 export default function PaintHero() {
   return (
@@ -71,7 +72,7 @@ export default function PaintHero() {
           className="mt-10"
         >
           <Link
-            href="/pdf/capability-profile.pdf"
+            href={CAPABILITY_PDF_PATH}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-3 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors no-underline"

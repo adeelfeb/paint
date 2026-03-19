@@ -3,37 +3,19 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '../../context/LanguageContext'
+import { CAPABILITY_PDF_PATH } from '../../lib/paintConstants'
 
-function usePathname() {
-  const [pathname, setPathname] = useState('')
-  useEffect(() => {
-    setPathname(window.location.pathname)
-    const scheduleUpdate = () => {
-      queueMicrotask(() => setPathname(window.location.pathname))
-    }
-    window.addEventListener('popstate', scheduleUpdate)
-    const origPush = history.pushState
-    const origReplace = history.replaceState
-    history.pushState = (...args) => { origPush.apply(history, args); scheduleUpdate() }
-    history.replaceState = (...args) => { origReplace.apply(history, args); scheduleUpdate() }
-    return () => {
-      window.removeEventListener('popstate', scheduleUpdate)
-      history.pushState = origPush
-      history.replaceState = origReplace
-    }
-  }, [])
-  return pathname
-}
-
-const SECTION_KEYS = [
-  { href: '/#overview', key: 'overview' },
-  { href: '/#capabilities', key: 'capabilities' },
-  { href: '/#standards', key: 'standards' },
-  { href: '/#experience', key: 'experience' },
-  { href: '/#products', key: 'products' },
-  { href: '/#contact', key: 'contact' },
+const NAV_ITEMS = [
+  { href: '/', key: 'home' },
+  { href: '/overview', key: 'overview' },
+  { href: '/capabilities', key: 'capabilities' },
+  { href: '/standards', key: 'standards' },
+  { href: '/experience', key: 'experience' },
+  { href: '/products', key: 'products' },
+  { href: '/company-contact', key: 'contact' },
 ]
 
 export default function PaintNavbar() {
@@ -51,7 +33,7 @@ export default function PaintNavbar() {
   const isActive = (href) => {
     if (href === '/') return pathname === '/'
     if (href.startsWith('http')) return false
-    return pathname.startsWith(href) || (href === '/#products' && pathname.startsWith('/products'))
+    return pathname.startsWith(href)
   }
 
   return (
@@ -86,7 +68,7 @@ export default function PaintNavbar() {
 
           <div className="hidden lg:flex flex-1 justify-center">
             <div className="flex items-center gap-1">
-              {SECTION_KEYS.map((item) => (
+              {NAV_ITEMS.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -104,7 +86,7 @@ export default function PaintNavbar() {
 
           <div className="flex items-center gap-2 flex-shrink-0">
             <a
-              href="/pdf/capability-profile.pdf"
+              href={CAPABILITY_PDF_PATH}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center h-9 px-4 text-sm font-semibold text-white bg-slate-800 hover:bg-slate-700 rounded-lg no-underline transition-colors"
@@ -157,7 +139,7 @@ export default function PaintNavbar() {
               className="lg:hidden mt-2 overflow-hidden"
             >
               <div className="rounded-xl bg-white border border-slate-200 shadow-xl py-2 px-2">
-                {SECTION_KEYS.map((item) => (
+                {NAV_ITEMS.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
@@ -170,7 +152,7 @@ export default function PaintNavbar() {
                   </Link>
                 ))}
                 <a
-                  href="/pdf/capability-profile.pdf"
+                  href={CAPABILITY_PDF_PATH}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-2 block text-center py-2.5 text-sm font-semibold text-white bg-slate-800 hover:bg-slate-700 rounded-lg no-underline"

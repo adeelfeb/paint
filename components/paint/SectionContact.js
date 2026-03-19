@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Phone, Mail, MapPin, FileText, MessageCircle } from 'lucide-react'
 import ContactForm from '../designndev/ContactForm'
 import { useLanguage } from '../../context/LanguageContext'
+import { CAPABILITY_PDF_PATH } from '../../lib/paintConstants'
 
 const CONTRACTORS = [
   'Galfar Engineering & Contracting',
@@ -123,7 +124,7 @@ export default function SectionContact() {
               </li>
             </ul>
             <a
-              href="/pdf/capability-profile.pdf"
+              href={CAPABILITY_PDF_PATH}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-teal-300 hover:text-teal-200 no-underline"

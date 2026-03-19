@@ -1,4 +1,5 @@
 import ProductDetailClient from './ProductDetailClient'
+import PageLayout from '../../../components/paint/PageLayout'
 
 export const metadata = {
   title: 'Product Details | MOHMMED AL HJOUJ FOR INVESTMENT SPC',
@@ -6,5 +7,9 @@ export const metadata = {
 }
 
 export default function ProductDetailPage() {
-  return <ProductDetailClient />
+  return (
+    <PageLayout>
+      <ProductDetailClient />
+    </PageLayout>
+  )
 }

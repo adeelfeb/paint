@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { Phone, Mail, MapPin } from 'lucide-react'
 import { useLanguage } from '../../context/LanguageContext'
+import { CAPABILITY_PDF_PATH } from '../../lib/paintConstants'
 
 export default function PaintFooter() {
   const year = new Date().getFullYear()
@@ -22,13 +23,14 @@ export default function PaintFooter() {
             <div>
               <h4 className="font-semibold mb-4 text-slate-900">{t('footer.quickLinks')}</h4>
               <ul className="space-y-2 text-slate-600 text-sm">
-                <li><Link href="/#overview" className="hover:text-slate-900 transition-colors no-underline">{t('nav.overview')}</Link></li>
-                <li><Link href="/#capabilities" className="hover:text-slate-900 transition-colors no-underline">{t('nav.capabilities')}</Link></li>
-                <li><Link href="/#standards" className="hover:text-slate-900 transition-colors no-underline">{t('nav.standards')}</Link></li>
-                <li><Link href="/#experience" className="hover:text-slate-900 transition-colors no-underline">{t('nav.experience')}</Link></li>
-                <li><Link href="/#products" className="hover:text-slate-900 transition-colors no-underline">{t('nav.products')}</Link></li>
-                <li><Link href="/#contact" className="hover:text-slate-900 transition-colors no-underline">{t('nav.contact')}</Link></li>
-                <li><a href="/pdf/capability-profile.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 transition-colors no-underline">{t('nav.downloadPdf')}</a></li>
+                <li><Link href="/" className="hover:text-slate-900 transition-colors no-underline">{t('nav.home')}</Link></li>
+                <li><Link href="/overview" className="hover:text-slate-900 transition-colors no-underline">{t('nav.overview')}</Link></li>
+                <li><Link href="/capabilities" className="hover:text-slate-900 transition-colors no-underline">{t('nav.capabilities')}</Link></li>
+                <li><Link href="/standards" className="hover:text-slate-900 transition-colors no-underline">{t('nav.standards')}</Link></li>
+                <li><Link href="/experience" className="hover:text-slate-900 transition-colors no-underline">{t('nav.experience')}</Link></li>
+                <li><Link href="/products" className="hover:text-slate-900 transition-colors no-underline">{t('nav.products')}</Link></li>
+                <li><Link href="/company-contact" className="hover:text-slate-900 transition-colors no-underline">{t('nav.contact')}</Link></li>
+                <li><a href={CAPABILITY_PDF_PATH} target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 transition-colors no-underline">{t('nav.downloadPdf')}</a></li>
               </ul>
             </div>
             <div>

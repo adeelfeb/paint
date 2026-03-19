@@ -13,9 +13,5 @@ export const metadata = {
 }
 
 export default function Home() {
-  return (
-    <main className="min-h-screen bg-white">
-      <HomeContent />
-    </main>
-  )
+  return <HomeContent />
 }
