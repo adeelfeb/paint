@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, Clock3, Droplets } from 'lucide-react'
 import Modal from '../Modal'
-import { PAINT_PRODUCTS } from '../../data/paintProducts'
+import { PAINT_PRODUCTS, getProductImageGallery } from '../../data/paintProducts'
 import { PAINT_BOX_IMAGES } from '../../data/paintImages'
 import { getProductContent } from '../../lib/productTranslations'
 import { useLanguage } from '../../context/LanguageContext'
@@ -37,17 +37,17 @@ export default function ProductShowcaseSection({
   const visibleProducts = useMemo(() => products.filter(Boolean), [products])
 
   return (
-    <section className="py-16 sm:py-20 border-b border-slate-200 bg-white">
+    <section className="py-16 sm:py-20 border-b border-brand-100 bg-gradient-to-b from-white to-brand-50/40">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-end justify-between gap-4 mb-8 sm:mb-10">
           <div>
-            <p className="text-xs sm:text-sm uppercase tracking-wider text-slate-500 font-semibold">Products</p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">{title}</h2>
+            <p className="text-xs sm:text-sm uppercase tracking-wider text-brand-600 font-semibold">Products</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-brand-900 mt-1">{title}</h2>
             <p className="text-slate-600 mt-2 max-w-2xl">{subtitle}</p>
           </div>
           <Link
             href="/products"
-            className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-slate-700 hover:text-slate-900 no-underline"
+            className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-brand-800 hover:text-brand-900 no-underline"
           >
             View all products
             <ArrowRight className="w-4 h-4" />
@@ -69,9 +69,9 @@ export default function ProductShowcaseSection({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -4 }}
-                className="rounded-2xl border border-slate-200 bg-slate-50 overflow-hidden shadow-sm hover:shadow-md transition-all"
+                className="rounded-2xl border border-brand-100 bg-white overflow-hidden shadow-sm hover:shadow-lg hover:border-brand-200 hover:shadow-brand-900/5 transition-all"
               >
-                <div className="relative aspect-[4/3] bg-slate-100">
+                <div className="relative aspect-[4/3] bg-brand-50">
                   <Image
                     src={image}
                     alt={name}
@@ -79,14 +79,14 @@ export default function ProductShowcaseSection({
                     className="object-cover"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  <span className="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-slate-900/90 text-white text-xs font-semibold inline-flex items-center gap-1.5">
+                  <span className="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-brand-900/92 text-white text-xs font-semibold inline-flex items-center gap-1.5">
                     <Droplets className="w-3.5 h-3.5" />
                     {product.size}
                   </span>
                 </div>
 
                 <div className="p-5">
-                  <h3 className="text-lg font-bold text-slate-900 line-clamp-2">{name}</h3>
+                  <h3 className="text-lg font-bold text-brand-900 line-clamp-2">{name}</h3>
                   <p className="mt-2 text-sm text-slate-600 leading-relaxed line-clamp-2">{shortDescription}</p>
                   <div className="mt-3 text-xs font-medium text-slate-500 inline-flex items-center gap-1.5">
                     <Clock3 className="w-3.5 h-3.5" />
@@ -97,14 +97,14 @@ export default function ProductShowcaseSection({
                     <button
                       type="button"
                       onClick={() => setActiveProduct(product)}
-                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-800 text-white text-sm font-semibold hover:bg-slate-700 transition-colors"
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-brand-800 text-white text-sm font-semibold hover:bg-brand-900 transition-colors"
                     >
                       View more
                       <ArrowRight className="w-4 h-4" />
                     </button>
                     <Link
                       href={`/products/${product.id}`}
-                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-700 text-sm font-semibold hover:bg-slate-100 no-underline transition-colors"
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-brand-50 border border-brand-200 text-brand-900 text-sm font-semibold hover:bg-brand-100 no-underline transition-colors"
                     >
                       Full page
                     </Link>
@@ -117,7 +117,7 @@ export default function ProductShowcaseSection({
 
         <Link
           href="/products"
-          className="sm:hidden mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-slate-700 hover:text-slate-900 no-underline"
+          className="sm:hidden mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-800 hover:text-brand-900 no-underline"
         >
           View all products
           <ArrowRight className="w-4 h-4" />
@@ -141,6 +141,8 @@ function ProductQuickViewModal({ product, isOpen, onClose }) {
   const name = content?.name ?? product.name
   const fullDescription = content?.fullDescription ?? product.fullDescription
   const years = getYearsInfo(product)
+  const gallery = getProductImageGallery(product)
+  const previewSrc = gallery[0] || product.image || PAINT_BOX_IMAGES[0]
 
   return (
     <Modal
@@ -153,25 +155,28 @@ function ProductQuickViewModal({ product, isOpen, onClose }) {
       closeOnEscape={true}
     >
       <div className="space-y-5">
-        <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-          <p className="text-xs uppercase tracking-wider text-slate-500 font-semibold mb-1">Product history</p>
-          <p className="text-sm font-semibold text-slate-900">{years.label}</p>
+        <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
+          <Image src={previewSrc} alt="" fill className="object-contain" sizes="(max-width: 768px) 100vw, 800px" />
+        </div>
+        <div className="rounded-xl border border-brand-100 bg-brand-50 p-4">
+          <p className="text-xs uppercase tracking-wider text-brand-600 font-semibold mb-1">Product history</p>
+          <p className="text-sm font-semibold text-brand-900">{years.label}</p>
           <p className="text-sm text-slate-600 mt-1">{years.detail}</p>
         </div>
 
         <p className="text-slate-700 leading-relaxed">{fullDescription}</p>
 
         <div className="flex flex-wrap gap-2 pt-1">
-          <span className="px-2.5 py-1 rounded-lg bg-slate-100 text-xs font-semibold text-slate-700">Size: {product.size}</span>
+          <span className="px-2.5 py-1 rounded-lg bg-brand-100 text-xs font-semibold text-brand-800">Size: {product.size}</span>
           {product.tagline ? (
-            <span className="px-2.5 py-1 rounded-lg bg-slate-100 text-xs font-semibold text-slate-700">{product.tagline}</span>
+            <span className="px-2.5 py-1 rounded-lg bg-brand-100 text-xs font-semibold text-brand-800">{product.tagline}</span>
           ) : null}
         </div>
 
         <div className="flex flex-wrap gap-3">
           <Link
             href={`/products/${product.id}`}
-            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-800 text-white text-sm font-semibold no-underline hover:bg-slate-700 transition-colors"
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-brand-800 text-white text-sm font-semibold no-underline hover:bg-brand-900 transition-colors"
             onClick={onClose}
           >
             Open full details
@@ -180,7 +185,7 @@ function ProductQuickViewModal({ product, isOpen, onClose }) {
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex items-center px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-700 text-sm font-semibold hover:bg-slate-100 transition-colors"
+            className="inline-flex items-center px-4 py-2.5 rounded-xl bg-white border border-brand-200 text-brand-800 text-sm font-semibold hover:bg-brand-50 transition-colors"
           >
             Close
           </button>

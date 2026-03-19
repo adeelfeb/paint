@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -7,7 +8,11 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, Droplets, Palette } from 'lucide-react'
 import { useLanguage } from '../../../context/LanguageContext'
 import { getProductContent } from '../../../lib/productTranslations'
-import { getProductById, PAINT_PRODUCTS, PRODUCT_SIZES } from '../../../data/paintProducts'
+import {
+  getProductById,
+  PRODUCT_SIZES,
+  getProductImageGallery,
+} from '../../../data/paintProducts'
 import { PAINT_BOX_IMAGES } from '../../../data/paintImages'
 
 const CATEGORY_IDS = ['all', ...PRODUCT_SIZES, '10ml', '15ml']
@@ -16,8 +21,20 @@ export default function ProductDetailClient() {
   const params = useParams()
   const id = typeof params?.id === 'string' ? params.id : null
   const { t, locale } = useLanguage()
+  const [selectedImage, setSelectedImage] = useState(0)
 
   const product = id ? getProductById(id) : null
+
+  const galleryImages = useMemo(() => {
+    if (!product) return []
+    const list = getProductImageGallery(product)
+    return list.length ? list : [PAINT_BOX_IMAGES[0]]
+  }, [product])
+
+  useEffect(() => {
+    setSelectedImage(0)
+  }, [product?.id])
+
   if (!product) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
@@ -38,7 +55,8 @@ export default function ProductDetailClient() {
   const applications = content?.applications ?? product.applications ?? []
   const industries = content?.industries ?? product.industries ?? []
   const specs = content?.specs ?? product.specs ?? {}
-  const image = product.image || PAINT_BOX_IMAGES[0]
+
+  const activeSrc = galleryImages[Math.min(selectedImage, galleryImages.length - 1)] ?? galleryImages[0]
 
   const getCategoryLabel = (catId) => {
     if (catId === 'all') return t('allCategories')
@@ -49,7 +67,6 @@ export default function ProductDetailClient() {
   return (
     <div className="min-h-screen bg-slate-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        {/* Back + Categories */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -89,18 +106,45 @@ export default function ProductDetailClient() {
           className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden"
         >
           <div className="grid md:grid-cols-2 gap-0">
-            <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[320px] bg-slate-100">
-              <Image
-                src={image}
-                alt={name}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
-              />
-              <span className="absolute top-4 left-4 px-3 py-1.5 rounded-xl bg-slate-800/90 text-white text-sm font-semibold">
-                {product.size}
-              </span>
+            <div className="flex flex-col bg-slate-100 border-b md:border-b-0 md:border-r border-slate-200">
+              <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[320px] w-full">
+                <Image
+                  key={activeSrc}
+                  src={activeSrc}
+                  alt={name}
+                  fill
+                  className="object-contain bg-slate-50"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
+                />
+                <span className="absolute top-4 left-4 px-3 py-1.5 rounded-xl bg-slate-800/90 text-white text-sm font-semibold">
+                  {product.size}
+                </span>
+              </div>
+              {galleryImages.length > 1 ? (
+                <div className="p-3 border-t border-slate-200 bg-white">
+                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                    Product images
+                  </p>
+                  <div className="flex gap-2 overflow-x-auto pb-1">
+                    {galleryImages.map((src, i) => (
+                      <button
+                        key={`${src}-${i}`}
+                        type="button"
+                        onClick={() => setSelectedImage(i)}
+                        className={`relative shrink-0 w-20 h-16 sm:w-24 sm:h-[4.5rem] rounded-lg overflow-hidden border-2 transition-colors ${
+                          selectedImage === i
+                            ? 'border-brand-600 ring-2 ring-brand-200'
+                            : 'border-slate-200 hover:border-slate-300 opacity-90 hover:opacity-100'
+                        }`}
+                        aria-label={`View image ${i + 1}`}
+                      >
+                        <Image src={src} alt="" fill className="object-cover" sizes="96px" />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
             </div>
             <div className="p-6 sm:p-8 flex flex-col justify-center">
               <div className="flex items-center gap-2 text-slate-500 font-semibold text-sm uppercase tracking-wider mb-2">

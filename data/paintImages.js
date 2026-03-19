@@ -1,6 +1,7 @@
 /**
- * Paint buckets & cans only – Unsplash (free). No spray paints.
- * Industrial coatings: smaller and larger buckets only.
+ * Fallback / hero imagery – Unsplash (remote). Prefer local assets in
+ * `public/products/` via `publicProductPath()` in `data/publicProductImages.js`
+ * and `PAINT_PRODUCTS[].image` / `gallery` in `data/paintProducts.js`.
  */
 
 export const PAINT_BOX_IMAGES = [

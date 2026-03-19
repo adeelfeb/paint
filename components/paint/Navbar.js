@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '../../context/LanguageContext'
 import { CAPABILITY_PDF_PATH } from '../../lib/paintConstants'
+import BrandLogo from './BrandLogo'
 
 const NAV_ITEMS = [
   { href: '/', key: 'home' },
@@ -45,25 +45,18 @@ export default function PaintNavbar() {
     >
       <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 py-2 sm:py-2.5">
         <div
-          className={`flex items-center justify-between gap-4 rounded-xl px-3 sm:px-4 py-2.5 min-h-[56px] transition-all duration-300 ${
-            scrolled
-              ? 'bg-white/98 backdrop-blur-md shadow-md border border-slate-200'
-              : 'bg-white/95 backdrop-blur-sm border border-slate-100'
+          className={`flex items-center justify-between gap-4 rounded-xl px-3 sm:px-4 py-2.5 min-h-[56px] transition-all duration-300 bg-white border border-slate-200/90 ${
+            scrolled ? 'shadow-md shadow-slate-200/60' : 'shadow-sm shadow-slate-200/40'
           }`}
         >
           <Link
             href="/"
-            className="flex items-center gap-2 no-underline text-slate-800 shrink-0"
-            aria-label="Home"
+            className="group flex items-center justify-center no-underline shrink-0 rounded-full p-0.5 ring-1 ring-brand-200/60 bg-white shadow-sm hover:shadow-md hover:ring-brand-300 transition-all"
+            aria-label="Home — MOHMMED AL HJOUJ FOR INVESTMENT SPC"
           >
-            <Image
-              src="/logo.jpeg"
-              alt="MOHMMED AL HJOUJ FOR INVESTMENT SPC"
-              width={140}
-              height={44}
-              className="h-8 w-auto max-h-10 object-contain object-left"
-              priority
-            />
+            <span className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-gradient-to-br from-brand-50 to-brand-100/80">
+              <BrandLogo variant="default" className="w-[22px] h-[22px] sm:w-[26px] sm:h-[26px] group-hover:scale-[1.03] transition-transform" />
+            </span>
           </Link>
 
           <div className="hidden lg:flex flex-1 justify-center">
@@ -74,8 +67,8 @@ export default function PaintNavbar() {
                   href={item.href}
                   className={`px-3 py-2 text-sm font-medium rounded-lg transition-all no-underline whitespace-nowrap ${
                     isActive(item.href)
-                      ? 'text-slate-900 bg-slate-100'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                      ? 'text-brand-900 bg-brand-50 ring-1 ring-brand-200/60'
+                      : 'text-slate-700 hover:text-slate-900 hover:bg-slate-50'
                   }`}
                 >
                   {t(`nav.${item.key}`)}
@@ -89,15 +82,15 @@ export default function PaintNavbar() {
               href={CAPABILITY_PDF_PATH}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center h-9 px-4 text-sm font-semibold text-white bg-slate-800 hover:bg-slate-700 rounded-lg no-underline transition-colors"
+              className="hidden sm:inline-flex items-center h-9 px-4 text-sm font-semibold text-white bg-brand-800 hover:bg-brand-900 rounded-lg no-underline transition-colors shadow-sm"
             >
               {t('nav.downloadPdf')}
             </a>
-            <div className="hidden md:flex items-center rounded-lg border border-slate-200 overflow-hidden bg-slate-50">
+            <div className="hidden md:flex items-center rounded-lg border border-brand-200 overflow-hidden bg-brand-50/50">
               <button
                 type="button"
                 onClick={() => setLocale('en')}
-                className={`px-2.5 py-1.5 text-xs font-medium transition-colors ${locale === 'en' ? 'bg-slate-800 text-white' : 'text-slate-600 hover:bg-slate-100'}`}
+                className={`px-2.5 py-1.5 text-xs font-medium transition-colors ${locale === 'en' ? 'bg-brand-800 text-white' : 'text-slate-600 hover:bg-brand-100'}`}
                 aria-label="English"
               >
                 EN
@@ -105,7 +98,7 @@ export default function PaintNavbar() {
               <button
                 type="button"
                 onClick={() => setLocale('ar')}
-                className={`px-2.5 py-1.5 text-xs font-medium transition-colors ${locale === 'ar' ? 'bg-slate-800 text-white' : 'text-slate-600 hover:bg-slate-100'}`}
+                className={`px-2.5 py-1.5 text-xs font-medium transition-colors ${locale === 'ar' ? 'bg-brand-800 text-white' : 'text-slate-600 hover:bg-brand-100'}`}
                 aria-label="العربية"
               >
                 عر
@@ -114,7 +107,7 @@ export default function PaintNavbar() {
             <button
               type="button"
               onClick={() => setIsMenuOpen((o) => !o)}
-              className="lg:hidden w-9 h-9 flex items-center justify-center rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+              className="lg:hidden w-9 h-9 flex items-center justify-center rounded-lg text-brand-800 hover:text-brand-900 hover:bg-brand-50"
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMenuOpen}
             >
@@ -138,13 +131,13 @@ export default function PaintNavbar() {
               transition={{ duration: 0.25 }}
               className="lg:hidden mt-2 overflow-hidden"
             >
-              <div className="rounded-xl bg-white border border-slate-200 shadow-xl py-2 px-2">
+              <div className="rounded-xl bg-white border border-brand-100 shadow-xl py-2 px-2">
                 {NAV_ITEMS.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
                     className={`block px-3 py-2.5 text-sm font-medium rounded-lg no-underline ${
-                      isActive(item.href) ? 'text-slate-900 bg-slate-100' : 'text-slate-600 hover:bg-slate-50'
+                      isActive(item.href) ? 'text-brand-900 bg-brand-50' : 'text-slate-700 hover:bg-slate-50'
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -155,7 +148,7 @@ export default function PaintNavbar() {
                   href={CAPABILITY_PDF_PATH}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-2 block text-center py-2.5 text-sm font-semibold text-white bg-slate-800 hover:bg-slate-700 rounded-lg no-underline"
+                  className="mt-2 block text-center py-2.5 text-sm font-semibold text-white bg-brand-800 hover:bg-brand-900 rounded-lg no-underline"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {t('nav.downloadPdf')}
@@ -164,14 +157,14 @@ export default function PaintNavbar() {
                   <button
                     type="button"
                     onClick={() => { setLocale('en'); setIsMenuOpen(false); }}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-lg ${locale === 'en' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600'}`}
+                    className={`px-3 py-1.5 text-sm font-medium rounded-lg ${locale === 'en' ? 'bg-brand-800 text-white' : 'bg-brand-50 text-slate-600'}`}
                   >
                     English
                   </button>
                   <button
                     type="button"
                     onClick={() => { setLocale('ar'); setIsMenuOpen(false); }}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-lg ${locale === 'ar' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600'}`}
+                    className={`px-3 py-1.5 text-sm font-medium rounded-lg ${locale === 'ar' ? 'bg-brand-800 text-white' : 'bg-brand-50 text-slate-600'}`}
                   >
                     العربية
                   </button>

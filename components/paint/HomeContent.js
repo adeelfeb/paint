@@ -50,16 +50,17 @@ export default function HomeContent() {
   return (
     <>
       <PaintNavbar />
-      <main className="min-h-screen bg-white pt-2">
+      <main className="min-h-screen bg-gradient-to-b from-brand-50/40 via-white to-brand-50/30 pt-2">
         <PaintHero />
         <ProductShowcaseSection />
 
-        <section className="py-16 sm:py-20 bg-slate-50 border-y border-slate-200">
+        <section className="py-16 sm:py-20 bg-white border-y border-brand-100">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">Explore by Page</h2>
+              <p className="text-xs font-semibold uppercase tracking-wider text-brand-600 mb-2">Site map</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-brand-900">Explore by page</h2>
               <p className="text-slate-600 mt-2 max-w-2xl mx-auto">
-                Each section now has its own page for easier navigation and cleaner presentation.
+                Each section has its own page for clearer navigation and focused reading.
               </p>
             </div>
 
@@ -71,16 +72,16 @@ export default function HomeContent() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="group rounded-2xl bg-white border border-slate-200 p-5 no-underline hover:border-slate-300 hover:shadow-md transition-all"
+                    className="group rounded-2xl bg-gradient-to-br from-white to-brand-50/50 border border-brand-100 p-5 no-underline hover:border-brand-300 hover:shadow-lg hover:shadow-brand-900/5 transition-all"
                   >
-                    <div className="w-11 h-11 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center mb-4 group-hover:bg-slate-800 group-hover:text-white transition-colors">
+                    <div className="w-11 h-11 rounded-xl bg-brand-100 text-brand-800 flex items-center justify-center mb-4 group-hover:bg-brand-700 group-hover:text-white transition-colors">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
+                    <h3 className="text-lg font-semibold text-brand-900">{item.title}</h3>
                     <p className="mt-2 text-sm text-slate-600 leading-relaxed">{item.description}</p>
-                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-slate-700 group-hover:text-slate-900">
+                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-700 group-hover:text-brand-900">
                       Open page
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                     </span>
                   </Link>
                 )
