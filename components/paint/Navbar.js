@@ -51,11 +51,19 @@ export default function PaintNavbar() {
         >
           <Link
             href="/"
-            className="group flex items-center justify-center no-underline shrink-0 rounded-full p-0.5 ring-1 ring-brand-200/60 bg-white shadow-sm hover:shadow-md hover:ring-brand-300 transition-all"
-            aria-label="Home — MOHMMED AL HJOUJ FOR INVESTMENT SPC"
+            className="group flex items-center gap-3 no-underline shrink-0 rounded-xl px-1 py-0.5"
+            aria-label="Home — VIRON"
           >
-            <span className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-gradient-to-br from-brand-50 to-brand-100/80">
-              <BrandLogo variant="default" className="w-[22px] h-[22px] sm:w-[26px] sm:h-[26px] group-hover:scale-[1.03] transition-transform" />
+            <span className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-white ring-1 ring-slate-200 shadow-sm group-hover:shadow-md transition-all">
+              <BrandLogo variant="default" className="w-[26px] h-[26px] sm:w-[30px] sm:h-[30px]" />
+            </span>
+            <span className="hidden sm:flex flex-col leading-tight">
+              <span className="text-slate-900 font-extrabold tracking-[0.22em] text-sm uppercase">
+                VIRON
+              </span>
+              <span className="text-slate-500 text-[10px] font-semibold tracking-wide leading-none">
+                Industrial coatings
+              </span>
             </span>
           </Link>
 

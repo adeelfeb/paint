@@ -1,20 +1,17 @@
-/**
- * Brand mark: protective coating film over a substrate (industrial paints / corrosion protection).
- * Not a shield — reads as “layer on steel/surface”.
- *
- * variant "default" — light UI (nav, light hero)
- * variant "light" — dark UI (footer); pale substrate + white film + warm accent
- */
 export default function BrandLogo({
   className,
   size = 40,
   variant = 'default',
   'aria-hidden': ariaHidden = true,
 }) {
-  const isLight = variant === 'light'
-  const substrate = isLight ? 'rgba(255,255,255,0.35)' : '#64748b'
-  const film = isLight ? '#ffffff' : '#0f7669'
-  const accent = isLight ? '#fbbf24' : '#d97706'
+  const isOnDark = variant === 'light'
+  const ink = isOnDark ? '#ffffff' : '#0b0f0e' // matte black
+  const plate = isOnDark ? 'rgba(255,255,255,0.10)' : '#ffffff'
+  const plateStroke = isOnDark ? 'rgba(255,255,255,0.16)' : 'rgba(2,6,23,0.08)'
+  const green = '#198f63' // industrial green
+  const greenDark = '#156f4f'
+  const orange = '#f08a24' // soft orange
+  const orangeLight = '#ffb36a'
 
   const dimProps = className ? {} : { width: size, height: size }
 
@@ -27,15 +24,43 @@ export default function BrandLogo({
       aria-hidden={ariaHidden}
       focusable="false"
     >
-      {/* Substrate / surface */}
-      <rect x="8" y="46" width="48" height="10" rx="2.5" fill={substrate} />
-      {/* Coating film (curved wet layer) */}
+      <defs>
+        <linearGradient id="vironCoat" x1="18" y1="18" x2="46" y2="46" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor={green} />
+          <stop offset="1" stopColor={greenDark} />
+        </linearGradient>
+        <linearGradient id="vironDrop" x1="28" y1="41" x2="38" y2="58" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor={orangeLight} />
+          <stop offset="1" stopColor={orange} />
+        </linearGradient>
+      </defs>
+
+      {/* Plate: improves legibility at small sizes on any background */}
+      <rect x="4.5" y="4.5" width="55" height="55" rx="16" fill={plate} stroke={plateStroke} />
+
+      {/* VIRON mark: refined industrial "V" + coating stroke + drop (original) */}
       <path
-        d="M 8 46 Q 32 17 56 46 L 56 46 L 8 46 Z"
-        fill={film}
+        d="M12.2 14.6h10.6L32 37.2l9.2-22.6h10.6L39.6 44c-1.3 3.2-4.1 5.1-7.6 5.1s-6.3-1.9-7.6-5.1L12.2 14.6Z"
+        fill={ink}
+        opacity={isOnDark ? 0.94 : 0.90}
       />
-      {/* Cure / spec highlight */}
-      <circle cx="32" cy="28" r="3.25" fill={accent} />
+
+      {/* Coating stroke: thicker + more premium contrast */}
+      <path
+        d="M21.4 17.8h6.6L32 28l4-10.2h6.6l-7.1 16.5c-.9 2-2.1 3.1-3.5 3.1s-2.6-1.1-3.5-3.1l-7.1-16.5Z"
+        fill="url(#vironCoat)"
+      />
+
+      {/* Drop (with highlight for depth) */}
+      <path
+        d="M32 40.2c4.4 5.6 6.9 8.8 6.9 12 0 3.8-3.1 6.8-6.9 6.8s-6.9-3-6.9-6.8c0-3.2 2.5-6.4 6.9-12Z"
+        fill="url(#vironDrop)"
+      />
+      <path
+        d="M29.6 47c1.4-2.2 2.7-3.8 4-5.3 1.2 1.5 2.3 3.1 3.3 4.8-1.3 3-3.7 3.6-5.6 2.2-.9-.7-1.5-1.5-1.7-1.7Z"
+        fill="#ffffff"
+        opacity={isOnDark ? 0.22 : 0.30}
+      />
     </svg>
   )
 }

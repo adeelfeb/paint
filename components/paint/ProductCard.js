@@ -6,6 +6,7 @@ import { Droplets, ChevronRight } from 'lucide-react'
 import { useLanguage } from '../../context/LanguageContext'
 import { getProductContent } from '../../lib/productTranslations'
 import { PAINT_BOX_IMAGES } from '../../data/paintImages'
+import ProductBadges from './ProductBadges'
 
 export default function ProductCard({ product, onClick }) {
   const { t, locale } = useLanguage()
@@ -18,7 +19,7 @@ export default function ProductCard({ product, onClick }) {
     <motion.button
       type="button"
       onClick={() => onClick(product)}
-      className="group text-left w-full rounded-2xl bg-slate-800/60 border border-slate-700/60 overflow-hidden hover:border-teal-500/40 hover:bg-slate-800/80 transition-all duration-300 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-slate-900 flex flex-col h-[400px] min-h-[400px] max-h-[400px]"
+      className="group text-left w-full rounded-2xl bg-slate-900/70 border border-slate-700/60 overflow-hidden hover:border-brand-500/50 hover:bg-slate-900/85 transition-all duration-300 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-slate-900 flex flex-col h-[400px] min-h-[400px] max-h-[400px]"
       whileHover={{ y: -4 }}
       whileTap={{ scale: 0.98 }}
     >
@@ -32,22 +33,25 @@ export default function ProductCard({ product, onClick }) {
           sizes="280px"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
-        <span className="absolute top-2 left-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-teal-500/90 text-slate-900 text-xs font-semibold">
+        <span className="absolute top-2 left-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-brand-400 text-slate-900 text-xs font-semibold">
           <Droplets className="w-3.5 h-3.5" />
           {product.size}
         </span>
-        <ChevronRight className="absolute top-2 right-2 w-5 h-5 text-white/80 group-hover:text-teal-400 group-hover:translate-x-0.5 transition-all" />
+        <ChevronRight className="absolute top-2 right-2 w-5 h-5 text-white/80 group-hover:text-brand-300 group-hover:translate-x-0.5 transition-all" />
       </div>
 
       {/* Fixed-height content – same size for all cards */}
       <div className="flex flex-col flex-1 min-h-0 p-4 sm:p-5">
-        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-teal-400/90 transition-colors line-clamp-2">
+        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-brand-200 transition-colors line-clamp-2">
           {name}
         </h3>
+        <div className="mb-3">
+          <ProductBadges product={product} compact />
+        </div>
         <p className="text-slate-400 text-sm leading-relaxed mb-4 line-clamp-2 flex-1 min-h-0">
           {shortDescription}
         </p>
-        <span className="text-teal-400 text-sm font-medium inline-flex items-center gap-1 mt-auto">
+        <span className="text-brand-200 text-sm font-medium inline-flex items-center gap-1 mt-auto">
           {t('products.viewDetails')}
           <ChevronRight className="w-4 h-4" />
         </span>

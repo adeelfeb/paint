@@ -5,17 +5,17 @@ import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Droplets, Palette } from 'lucide-react'
+import { ArrowLeft, Droplets, Palette, FileText, QrCode } from 'lucide-react'
 import { useLanguage } from '../../../context/LanguageContext'
 import { getProductContent } from '../../../lib/productTranslations'
 import {
   getProductById,
-  PRODUCT_SIZES,
+  PAINT_PRODUCTS,
   getProductImageGallery,
 } from '../../../data/paintProducts'
 import { PAINT_BOX_IMAGES } from '../../../data/paintImages'
-
-const CATEGORY_IDS = ['all', ...PRODUCT_SIZES, '10ml', '15ml']
+import ProductBadges from '../../../components/paint/ProductBadges'
+import TdsQrCode from '../../../components/paint/TdsQrCode'
 
 export default function ProductDetailClient() {
   const params = useParams()
@@ -58,10 +58,18 @@ export default function ProductDetailClient() {
 
   const activeSrc = galleryImages[Math.min(selectedImage, galleryImages.length - 1)] ?? galleryImages[0]
 
+  const relatedIds = useMemo(() => {
+    const base = ['all']
+    const sameLine = product?.line
+      ? PAINT_PRODUCTS.filter((p) => p.line === product.line).map((p) => p.id)
+      : []
+    return [...base, ...sameLine]
+  }, [product?.line])
+
   const getCategoryLabel = (catId) => {
     if (catId === 'all') return t('allCategories')
     const p = getProductById(catId)
-    return p ? p.size : catId
+    return p ? (p.systemStage || p.size || p.name) : catId
   }
 
   return (
@@ -80,10 +88,10 @@ export default function ProductDetailClient() {
             Back to products
           </Link>
           <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-3">
-            Categories
+            Browse within this system
           </p>
           <div className="flex flex-wrap gap-2">
-            {CATEGORY_IDS.map((catId) => (
+            {relatedIds.map((catId) => (
               <Link
                 key={catId}
                 href={catId === 'all' ? '/products' : `/products/${catId}`}
@@ -154,6 +162,9 @@ export default function ProductDetailClient() {
               <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
                 {name}
               </h1>
+              <div className="mb-4">
+                <ProductBadges product={product} />
+              </div>
               <p className="text-slate-600 mb-4">{tagline}</p>
               <p className="text-slate-700 leading-relaxed">{fullDescription}</p>
             </div>
@@ -216,7 +227,54 @@ export default function ProductDetailClient() {
                 <Palette className="w-4 h-4" />
                 {t('colorFinder')}
               </Link>
+              {product.tdsUrl ? (
+                <Link
+                  href={product.tdsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-3 bg-brand-800 hover:bg-brand-900 text-white font-medium rounded-xl no-underline"
+                >
+                  <FileText className="w-4 h-4" />
+                  TDS
+                </Link>
+              ) : null}
+              {product.tdsUrl ? (
+                <Link
+                  href={`/products/${product.id}#tds-qr`}
+                  className="inline-flex items-center gap-2 px-5 py-3 bg-white hover:bg-slate-50 text-slate-900 font-medium rounded-xl no-underline border border-slate-200"
+                >
+                  <QrCode className="w-4 h-4" />
+                  QR
+                </Link>
+              ) : null}
             </div>
+
+            {product.tdsUrl ? (
+              <div id="tds-qr" className="rounded-xl bg-white border border-slate-200 p-5">
+                <h2 className="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-2">
+                  TDS QR code
+                </h2>
+                <p className="text-sm text-slate-600 mb-4">
+                  Scan to open the technical data sheet (TDS).
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
+                  <TdsQrCode url={product.tdsUrl} size={176} />
+                  <div className="min-w-0">
+                    <a
+                      href={product.tdsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand-800 font-semibold hover:underline break-all"
+                    >
+                      {product.tdsUrl}
+                    </a>
+                    <p className="text-xs text-slate-500 mt-2">
+                      Tip: keep this QR on labels/packaging so customers can always access the latest TDS.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ) : null}
           </div>
         </motion.article>
       </div>

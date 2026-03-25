@@ -25,22 +25,25 @@ module.exports = {
           'amber-light': '#fbbf24',
           'amber-dark': '#d97706',
         },
-        /** Industrial coatings brand — teal + warm amber accent */
+        /**
+         * VIRON brand palette (industrial): matte black + dark grey + industrial green + soft orange.
+         * Keep the existing `brand-*` keys so the site updates globally.
+         */
         brand: {
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#14b8a6',
-          600: '#0d9488',
-          700: '#0f7669',
-          800: '#115e59',
-          900: '#134e4a',
-          950: '#042f2e',
-          accent: '#d97706',
-          'accent-light': '#fbbf24',
-          'accent-muted': '#fef3c7',
+          50: '#f2fbf7',
+          100: '#d7f3e6',
+          200: '#afe6cf',
+          300: '#7fd5b4',
+          400: '#4fc497',
+          500: '#1fb07a',
+          600: '#198f63',
+          700: '#156f4f',
+          800: '#125a41',
+          900: '#0f4634',
+          950: '#0b1711',
+          accent: '#f08a24',
+          'accent-light': '#ffb36a',
+          'accent-muted': '#fff1e3',
         },
       },
       fontFamily: {

@@ -8,99 +8,102 @@ import BrandLogo from './BrandLogo'
 
 export default function PaintHero() {
   return (
-    <section className="relative overflow-hidden pt-24 sm:pt-28 pb-20 sm:pb-24 border-b border-slate-200/80 bg-white">
-      {/* Light background — matches rest of site; no green wash behind header */}
+    <section className="relative overflow-hidden pt-24 sm:pt-28 pb-16 sm:pb-20 border-b border-slate-200/80 bg-white">
+      {/* VIRON hero background: matte + industrial green glow + subtle texture */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-brand-50/40 to-white" aria-hidden />
+      <div className="absolute -top-24 -right-24 w-[28rem] h-[28rem] rounded-full bg-brand-200/35 blur-3xl" aria-hidden />
+      <div className="absolute -bottom-28 -left-24 w-[30rem] h-[30rem] rounded-full bg-brand-accent-muted/70 blur-3xl" aria-hidden />
       <div
-        className="absolute inset-0 bg-gradient-to-b from-white via-brand-50/40 to-white"
-        aria-hidden
-      />
-      <div
-        className="absolute inset-0 opacity-[0.35]"
+        className="absolute inset-0 opacity-[0.25]"
         style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgb(15 118 110 / 0.12) 1px, transparent 0)`,
-          backgroundSize: '28px 28px',
+          backgroundImage: `linear-gradient(to right, rgba(17,24,39,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(17,24,39,0.08) 1px, transparent 1px)`,
+          backgroundSize: '36px 36px',
         }}
         aria-hidden
       />
-      <div
-        className="absolute top-0 right-0 w-[min(100%,28rem)] h-[min(50vh,20rem)] bg-gradient-to-bl from-brand-100/50 to-transparent rounded-bl-[40%]"
-        aria-hidden
-      />
 
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.45 }}
-          className="flex flex-col items-center mb-8"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"
         >
-          <div className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white border border-slate-200/90 shadow-md shadow-slate-200/50 mb-6">
-            <BrandLogo variant="default" className="w-14 h-14 sm:w-16 sm:h-16" aria-hidden />
+          <div className="lg:col-span-7 text-left">
+            <div className="inline-flex items-center gap-3 mb-5">
+              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm">
+                <BrandLogo variant="default" className="w-8 h-8" aria-hidden />
+              </span>
+              <div className="leading-tight">
+                <div className="text-slate-900 font-extrabold tracking-[0.35em] text-sm uppercase">
+                  VIRON
+                </div>
+                <div className="text-slate-500 text-xs font-semibold tracking-wide">
+                  Industrial Coatings & Automotive Systems
+                </div>
+              </div>
+            </div>
+
+            <p className="text-brand-800 font-semibold text-xs sm:text-sm uppercase tracking-[0.22em] mb-3">
+              Built for harsh environments
+            </p>
+            <h1 className="text-3xl sm:text-5xl font-black text-slate-950 leading-[1.05] tracking-tight">
+              Coatings that protect.<br className="hidden sm:block" /> Systems that perform.
+            </h1>
+            <p className="mt-4 text-slate-600 text-base sm:text-lg max-w-xl font-medium">
+              Epoxy, polyurethane, and corrosion-control solutions with clear system layering, readable specs, and QR-linked TDS.
+            </p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.12 }}
+              className="mt-7 flex flex-col sm:flex-row flex-wrap items-start gap-3"
+            >
+              <Link
+                href={CAPABILITY_PDF_PATH}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3.5 bg-slate-950 hover:bg-slate-900 text-white font-semibold rounded-xl shadow-md transition-colors no-underline"
+              >
+                <FileText className="w-5 h-5" />
+                Download TDS / Profile (PDF)
+              </Link>
+              <Link
+                href="/products"
+                className="inline-flex items-center gap-2 px-6 py-3.5 bg-white hover:bg-slate-50 text-slate-900 font-semibold rounded-xl border border-slate-300 transition-colors no-underline shadow-sm"
+              >
+                View products
+                <ArrowRight className="w-5 h-5 text-brand-800" />
+              </Link>
+            </motion.div>
           </div>
-          <p className="text-brand-700 font-semibold text-xs sm:text-sm uppercase tracking-[0.2em] mb-3">
-            Oil & Gas Capability Profile
-          </p>
-          <h1 className="text-2xl sm:text-4xl lg:text-[2.75rem] font-bold text-slate-900 leading-tight tracking-tight max-w-4xl mx-auto">
-            MOHMMED AL HJOUJ FOR INVESTMENT SPC
-          </h1>
-          <p className="mt-4 text-slate-600 text-base sm:text-lg max-w-2xl mx-auto font-medium">
-            Industrial Coatings • Corrosion Protection • Epoxy Systems
-          </p>
-          <p className="mt-2 text-slate-500 text-sm">Sultanate of Oman</p>
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.12 }}
-          className="flex flex-wrap justify-center gap-3 sm:gap-4 text-sm text-slate-700"
-        >
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm">
-            <span className="text-brand-800 font-semibold">C.R.</span>
-            1550745
-          </span>
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm">
-            <MapPin className="w-4 h-4 text-brand-600 shrink-0" />
-            PC: 121 Mabela Industrial Area
-          </span>
-          <a
-            href="tel:+96898539796"
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm hover:border-brand-300 hover:bg-brand-50/50 text-slate-800 no-underline transition-colors"
-          >
-            <Phone className="w-4 h-4 text-brand-600 shrink-0" />
-            +968 98539796
-          </a>
-          <a
-            href="mailto:M-alhouj@hpc-om.com"
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm hover:border-brand-300 hover:bg-brand-50/50 text-slate-800 no-underline transition-colors"
-          >
-            <Mail className="w-4 h-4 text-brand-600 shrink-0" />
-            M-alhouj@hpc-om.com
-          </a>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.22 }}
-          className="mt-10 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3"
-        >
-          <Link
-            href={CAPABILITY_PDF_PATH}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3.5 bg-brand-800 hover:bg-brand-900 text-white font-semibold rounded-xl shadow-md shadow-brand-900/15 transition-colors no-underline"
-          >
-            <FileText className="w-5 h-5" />
-            Download Capability Profile (PDF)
-          </Link>
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-2 px-6 py-3.5 bg-white hover:bg-slate-50 text-slate-800 font-semibold rounded-xl border border-slate-300 transition-colors no-underline shadow-sm"
-          >
-            View products
-            <ArrowRight className="w-5 h-5 text-brand-700" />
-          </Link>
+          <div className="lg:col-span-5">
+            <div className="rounded-3xl border border-slate-200 bg-white/70 backdrop-blur p-5 shadow-lg shadow-slate-200/60">
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { Icon: MapPin, label: 'Oman-based' },
+                  { Icon: Phone, label: '+968 98539796' },
+                  { Icon: Mail, label: 'M-alhouj@hpc-om.com' },
+                  { Icon: FileText, label: 'QR-linked TDS' },
+                ].map(({ Icon, label }) => (
+                  <div
+                    key={label}
+                    className="rounded-2xl border border-slate-200 bg-white p-4 flex items-center gap-3"
+                  >
+                    <span className="w-10 h-10 rounded-xl bg-brand-50 text-brand-900 flex items-center justify-center ring-1 ring-brand-200/70">
+                      <Icon className="w-5 h-5" />
+                    </span>
+                    <div className="min-w-0">
+                      <div className="text-sm font-semibold text-slate-900 truncate">{label}</div>
+                      <div className="text-xs text-slate-500">Trusted industrial finish</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

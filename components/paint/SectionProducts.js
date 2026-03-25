@@ -9,18 +9,22 @@ import { useLanguage } from '../../context/LanguageContext'
 import { getProductContent } from '../../lib/productTranslations'
 import { PAINT_PRODUCTS, PRODUCT_SIZES, getProductById } from '../../data/paintProducts'
 import { PAINT_BOX_IMAGES } from '../../data/paintImages'
+import ProductBadges from './ProductBadges'
 
 const ALL_ID = 'all'
 const CATEGORY_IDS = [ALL_ID, ...PRODUCT_SIZES, '10ml', '15ml']
+const LINE_ALL = 'all'
 
 export default function SectionProducts() {
   const { t, locale } = useLanguage()
   const [category, setCategory] = useState(ALL_ID)
+  const [line, setLine] = useState(LINE_ALL)
 
-  const filtered =
-    category === ALL_ID
-      ? PAINT_PRODUCTS
-      : PAINT_PRODUCTS.filter((p) => p.id === category)
+  const filtered = PAINT_PRODUCTS.filter((p) => {
+    const byCategory = category === ALL_ID ? true : p.id === category
+    const byLine = line === LINE_ALL ? true : p.line === line
+    return byCategory && byLine
+  })
 
   const getCategoryLabel = (id) => {
     if (id === ALL_ID) return t('allCategories')
@@ -44,6 +48,28 @@ export default function SectionProducts() {
             {t('products.sectionSubtitle')}
           </p>
         </motion.div>
+
+        {/* Product lines (Industrial / Automotive) */}
+        <div className="flex flex-wrap justify-center gap-2 mb-4">
+          {[
+            { id: LINE_ALL, label: 'All' },
+            { id: 'industrial', label: 'Industrial Coatings' },
+            { id: 'automotive', label: 'Automotive Paint Systems' },
+          ].map((opt) => (
+            <button
+              key={opt.id}
+              type="button"
+              onClick={() => setLine(opt.id)}
+              className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${
+                line === opt.id
+                  ? 'bg-brand-800 text-white shadow-md'
+                  : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
+              }`}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
 
         {/* Categories */}
         <motion.div
@@ -107,6 +133,9 @@ export default function SectionProducts() {
                     <h3 className="text-lg font-bold text-slate-900 mb-2 line-clamp-2">
                       {name}
                     </h3>
+                    <div className="mb-3">
+                      <ProductBadges product={product} />
+                    </div>
                     <p className="text-slate-600 text-sm leading-relaxed line-clamp-2 mb-4 flex-1">
                       {shortDescription}
                     </p>

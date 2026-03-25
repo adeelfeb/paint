@@ -20,10 +20,10 @@ export default function PaintFooter() {
                 <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 border border-white/20 ring-1 ring-white/10">
                   <BrandLogo variant="light" className="w-7 h-7" aria-hidden />
                 </span>
-                <span className="text-white font-semibold tracking-[0.35em] text-sm uppercase">
-                  MAH
+                <span className="text-white font-extrabold tracking-[0.28em] text-sm uppercase">
+                  VIRON
                 </span>
-                <span className="sr-only">MOHMMED AL HJOUJ FOR INVESTMENT SPC</span>
+                <span className="sr-only">VIRON</span>
               </div>
               <p className="text-brand-200/90 text-sm leading-relaxed">
                 Industrial Coatings • Corrosion Protection • Epoxy Systems. Serving Oil & Gas, petrochemical, mining, defense, and infrastructure in the Sultanate of Oman and the region.
@@ -68,7 +68,7 @@ export default function PaintFooter() {
       </section>
       <section className="py-4 border-t border-brand-800/80 bg-brand-950/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-brand-300/90 text-sm">
-          <p>© {year} MOHMMED AL HJOUJ FOR INVESTMENT SPC. C.R. No.: 1550745. All rights reserved.</p>
+          <p>© {year} VIRON. C.R. No.: 1550745. All rights reserved.</p>
         </div>
       </section>
     </footer>
