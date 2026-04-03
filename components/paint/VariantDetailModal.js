@@ -1,13 +1,11 @@
 'use client'
 
-import { useLanguage } from '../../context/LanguageContext'
+import { t } from '../../lib/siteCopy'
 
 export default function VariantDetailModal({ variant, sizeId, isOpen, onClose }) {
   if (!variant || !isOpen) return null
-  const { t, locale } = useLanguage()
-  const isAr = locale === 'ar'
   const sizeNum = (sizeId || '').replace('ml', '')
-  const name = isAr ? variant.nameAr : variant.nameEn
+  const name = variant.nameEn
 
   return (
     <div
@@ -38,7 +36,7 @@ export default function VariantDetailModal({ variant, sizeId, isOpen, onClose })
             onClick={onClose}
             className="flex-1 px-4 py-2 rounded-xl bg-slate-700 text-slate-200 hover:bg-slate-600 transition-colors text-sm font-medium"
           >
-            {locale === 'ar' ? 'إغلاق' : 'Close'}
+            Close
           </button>
         </div>
       </div>

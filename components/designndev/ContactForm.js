@@ -5,12 +5,11 @@ import { useState } from 'react'
 import { Send, Loader2 } from 'lucide-react'
 import { useRecaptcha } from '../../utils/useRecaptcha'
 import { safeParseJsonResponse } from '../../utils/safeJsonResponse'
-import { useLanguage } from '../../context/LanguageContext'
+import { t } from '../../lib/siteCopy'
 
 export default function ContactForm({ showHeading = true, theme = 'default' }) {
   const isPaint = theme === 'paint'
   const isLight = theme === 'light' || theme === 'default'
-  const { t } = useLanguage()
   const { execute: executeRecaptcha, isAvailable: recaptchaAvailable } = useRecaptcha()
   const [formData, setFormData] = useState({
     name: '',

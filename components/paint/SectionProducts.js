@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronRight, Palette } from 'lucide-react'
-import { useLanguage } from '../../context/LanguageContext'
+import { t } from '../../lib/siteCopy'
 import { getProductContent } from '../../lib/productTranslations'
 import { PAINT_PRODUCTS, PRODUCT_SIZES, getProductById } from '../../data/paintProducts'
 import { PAINT_BOX_IMAGES } from '../../data/paintImages'
@@ -16,7 +16,6 @@ const CATEGORY_IDS = [ALL_ID, ...PRODUCT_SIZES, '10ml', '15ml']
 const LINE_ALL = 'all'
 
 export default function SectionProducts() {
-  const { t, locale } = useLanguage()
   const [category, setCategory] = useState(ALL_ID)
   const [line, setLine] = useState(LINE_ALL)
 
@@ -104,7 +103,7 @@ export default function SectionProducts() {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {filtered.map((product) => {
-              const content = getProductContent(product.id, locale)
+              const content = getProductContent(product.id)
               const name = content?.name ?? product.name
               const shortDescription = content?.shortDescription ?? product.shortDescription
               const image = product.image || PAINT_BOX_IMAGES[0]

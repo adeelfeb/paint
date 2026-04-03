@@ -3,14 +3,13 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Droplets, ChevronRight } from 'lucide-react'
-import { useLanguage } from '../../context/LanguageContext'
+import { t } from '../../lib/siteCopy'
 import { getProductContent } from '../../lib/productTranslations'
 import { PAINT_BOX_IMAGES } from '../../data/paintImages'
 import ProductBadges from './ProductBadges'
 
 export default function ProductCard({ product, onClick }) {
-  const { t, locale } = useLanguage()
-  const content = getProductContent(product.id, locale)
+  const content = getProductContent(product.id)
   const name = content?.name ?? product.name
   const shortDescription = content?.shortDescription ?? product.shortDescription
   const image = product.image || PAINT_BOX_IMAGES[0]

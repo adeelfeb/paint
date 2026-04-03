@@ -4,13 +4,12 @@ import { motion } from 'framer-motion'
 import { PRODUCT_SIZES, getProductById } from '../../data/paintProducts'
 import ProductCard from './ProductCard'
 import VariantCarousel from './VariantCarousel'
-import { useLanguage } from '../../context/LanguageContext'
+import { t } from '../../lib/siteCopy'
 
 const CARD_WIDTH = 280
 const CARD_HEIGHT = 400
 
 export default function ProductsBySizeSection({ onProductClick }) {
-  const { t } = useLanguage()
 
   return (
     <section id="products" className="relative bg-slate-900">

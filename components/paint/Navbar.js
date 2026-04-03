@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useLanguage } from '../../context/LanguageContext'
+import { t } from '../../lib/siteCopy'
 import { CAPABILITY_PDF_PATH } from '../../lib/paintConstants'
 import BrandLogo from './BrandLogo'
 
@@ -20,8 +20,6 @@ export default function PaintNavbar() {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const { locale, setLocale, t } = useLanguage()
-
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll)
@@ -92,24 +90,6 @@ export default function PaintNavbar() {
             >
               {t('nav.downloadPdf')}
             </a>
-            <div className="hidden md:flex items-center rounded-lg border border-brand-200 overflow-hidden bg-brand-50/50">
-              <button
-                type="button"
-                onClick={() => setLocale('en')}
-                className={`px-2.5 py-1.5 text-xs font-medium transition-colors ${locale === 'en' ? 'bg-brand-800 text-white' : 'text-slate-600 hover:bg-brand-100'}`}
-                aria-label="English"
-              >
-                EN
-              </button>
-              <button
-                type="button"
-                onClick={() => setLocale('ar')}
-                className={`px-2.5 py-1.5 text-xs font-medium transition-colors ${locale === 'ar' ? 'bg-brand-800 text-white' : 'text-slate-600 hover:bg-brand-100'}`}
-                aria-label="العربية"
-              >
-                عر
-              </button>
-            </div>
             <button
               type="button"
               onClick={() => setIsMenuOpen((o) => !o)}
@@ -161,22 +141,6 @@ export default function PaintNavbar() {
                 >
                   {t('nav.downloadPdf')}
                 </a>
-                <div className="flex justify-center gap-2 mt-2 pt-2 border-t border-slate-100">
-                  <button
-                    type="button"
-                    onClick={() => { setLocale('en'); setIsMenuOpen(false); }}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-lg ${locale === 'en' ? 'bg-brand-800 text-white' : 'bg-brand-50 text-slate-600'}`}
-                  >
-                    English
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => { setLocale('ar'); setIsMenuOpen(false); }}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-lg ${locale === 'ar' ? 'bg-brand-800 text-white' : 'bg-brand-50 text-slate-600'}`}
-                  >
-                    العربية
-                  </button>
-                </div>
               </div>
             </motion.div>
           )}

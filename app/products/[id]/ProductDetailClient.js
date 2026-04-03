@@ -6,7 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Droplets, Palette, FileText, QrCode } from 'lucide-react'
-import { useLanguage } from '../../../context/LanguageContext'
+import { t } from '../../../lib/siteCopy'
 import { getProductContent } from '../../../lib/productTranslations'
 import {
   getProductById,
@@ -20,7 +20,6 @@ import TdsQrCode from '../../../components/paint/TdsQrCode'
 export default function ProductDetailClient() {
   const params = useParams()
   const id = typeof params?.id === 'string' ? params.id : null
-  const { t, locale } = useLanguage()
   const [selectedImage, setSelectedImage] = useState(0)
 
   const product = id ? getProductById(id) : null
@@ -48,7 +47,7 @@ export default function ProductDetailClient() {
     )
   }
 
-  const content = getProductContent(product.id, locale)
+  const content = getProductContent(product.id)
   const name = content?.name ?? product.name
   const tagline = content?.tagline ?? product.tagline
   const fullDescription = content?.fullDescription ?? product.fullDescription

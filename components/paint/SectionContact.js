@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { Phone, Mail, MapPin, FileText, MessageCircle } from 'lucide-react'
 import ContactForm from '../designndev/ContactForm'
-import { useLanguage } from '../../context/LanguageContext'
+import { t } from '../../lib/siteCopy'
 import { CAPABILITY_PDF_PATH } from '../../lib/paintConstants'
 
 const CONTRACTORS = [
@@ -13,8 +13,6 @@ const CONTRACTORS = [
 ]
 
 export default function SectionContact() {
-  const { t } = useLanguage()
-
   return (
     <section id="contact" className="scroll-mt-20">
       {/* Oman Market & Contractor Support – light background for contrast */}

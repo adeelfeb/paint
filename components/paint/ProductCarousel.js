@@ -6,7 +6,7 @@ import { PAINT_PRODUCTS } from '../../data/paintProducts'
 import ProductCard from './ProductCard'
 import ProductModal from './ProductModal'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useLanguage } from '../../context/LanguageContext'
+import { t } from '../../lib/siteCopy'
 
 const CARD_WIDTH = 280
 const CARD_HEIGHT = 400
@@ -67,7 +67,6 @@ export default function ProductCarousel() {
     setSelectedProduct(null)
   }
 
-  const { t } = useLanguage()
   const stripProducts = Array(DUPE).fill(null).flatMap(() => PAINT_PRODUCTS)
 
   return (

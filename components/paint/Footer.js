@@ -2,14 +2,12 @@
 
 import Link from 'next/link'
 import { Globe, Phone, Mail, MapPin } from 'lucide-react'
-import { useLanguage } from '../../context/LanguageContext'
+import { t } from '../../lib/siteCopy'
 import { CAPABILITY_PDF_PATH } from '../../lib/paintConstants'
 import BrandLogo from './BrandLogo'
 
 export default function PaintFooter() {
   const year = new Date().getFullYear()
-  const { t } = useLanguage()
-
   return (
     <footer className="bg-brand-900 text-brand-100 border-t border-brand-800">
       <section className="py-12 md:py-16">

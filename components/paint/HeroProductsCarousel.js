@@ -4,7 +4,7 @@ import { useRef, useEffect } from 'react'
 import { PRODUCT_SIZES, getProductById } from '../../data/paintProducts'
 import ProductCard from './ProductCard'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useLanguage } from '../../context/LanguageContext'
+import { t } from '../../lib/siteCopy'
 
 const CARD_WIDTH = 280
 const CARD_HEIGHT = 400
@@ -12,7 +12,6 @@ const CARD_GAP = 24
 
 export default function HeroProductsCarousel({ onProductClick }) {
   const scrollRef = useRef(null)
-  const { t } = useLanguage()
   const products = PRODUCT_SIZES.map(getProductById).filter(Boolean)
 
   useEffect(() => {

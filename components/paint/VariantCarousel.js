@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react'
 import Image from 'next/image'
-import { useLanguage } from '../../context/LanguageContext'
+import { t } from '../../lib/siteCopy'
 import { getVariantsForSize } from '../../data/paintVariants'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import VariantDetailModal from './VariantDetailModal'
@@ -13,9 +13,7 @@ const CARD_GAP = 16
 export default function VariantCarousel({ sizeId }) {
   const scrollRef = useRef(null)
   const [selectedVariant, setSelectedVariant] = useState(null)
-  const { locale, t } = useLanguage()
   const variants = getVariantsForSize(sizeId)
-  const isAr = locale === 'ar'
 
   useEffect(() => {
     const el = scrollRef.current
@@ -70,7 +68,7 @@ export default function VariantCarousel({ sizeId }) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent" />
               <span className="absolute bottom-2 left-2 right-2 text-xs font-semibold text-white drop-shadow-md truncate block text-center">
-                {isAr ? v.nameAr : v.nameEn}
+                {v.nameEn}
               </span>
             </div>
             <div className="px-2 py-1.5 text-center">

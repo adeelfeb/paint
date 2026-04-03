@@ -9,7 +9,6 @@ import Modal from '../Modal'
 import { PAINT_PRODUCTS, getProductImageGallery } from '../../data/paintProducts'
 import { PAINT_BOX_IMAGES } from '../../data/paintImages'
 import { getProductContent } from '../../lib/productTranslations'
-import { useLanguage } from '../../context/LanguageContext'
 
 const PRODUCT_YEAR_DETAILS = {
   '1ml': { label: 'Since 2021', detail: 'Developed for sample-led applications and precision testing.' },
@@ -31,7 +30,6 @@ export default function ProductShowcaseSection({
   subtitle = 'Explore key coating products with quick details. Open any card to view more information without leaving the page.',
   products = PAINT_PRODUCTS.slice(0, 6),
 }) {
-  const { locale } = useLanguage()
   const [activeProduct, setActiveProduct] = useState(null)
 
   const visibleProducts = useMemo(() => products.filter(Boolean), [products])
@@ -56,7 +54,7 @@ export default function ProductShowcaseSection({
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {visibleProducts.map((product) => {
-            const content = getProductContent(product.id, locale)
+            const content = getProductContent(product.id)
             const name = content?.name ?? product.name
             const shortDescription = content?.shortDescription ?? product.shortDescription
             const image = product.image || PAINT_BOX_IMAGES[0]
@@ -134,10 +132,9 @@ export default function ProductShowcaseSection({
 }
 
 function ProductQuickViewModal({ product, isOpen, onClose }) {
-  const { locale } = useLanguage()
   if (!product) return null
 
-  const content = getProductContent(product.id, locale)
+  const content = getProductContent(product.id)
   const name = content?.name ?? product.name
   const fullDescription = content?.fullDescription ?? product.fullDescription
   const years = getYearsInfo(product)

@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { useLanguage } from '../../context/LanguageContext'
+import { t } from '../../lib/siteCopy'
 import { PAINT_BOX_IMAGES } from '../../data/paintImages'
 
 const BUCKET_IMAGES = [
@@ -12,7 +12,6 @@ const BUCKET_IMAGES = [
 ]
 
 export default function BucketRangesSection() {
-  const { t } = useLanguage()
 
   const ranges = [
     { key: 'small', image: BUCKET_IMAGES[0] },

@@ -2,14 +2,13 @@
 
 import Modal from '../Modal'
 import { Droplets } from 'lucide-react'
-import { useLanguage } from '../../context/LanguageContext'
+import { t } from '../../lib/siteCopy'
 import { getProductContent } from '../../lib/productTranslations'
 
 export default function ProductModal({ product, isOpen, onClose }) {
-  const { locale, t } = useLanguage()
   if (!product) return null
 
-  const content = getProductContent(product.id, locale)
+  const content = getProductContent(product.id)
   const name = content?.name ?? product.name
   const tagline = content?.tagline ?? product.tagline
   const fullDescription = content?.fullDescription ?? product.fullDescription

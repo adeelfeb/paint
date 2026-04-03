@@ -3,10 +3,9 @@
 import { motion } from 'framer-motion'
 import ContactForm from '../designndev/ContactForm'
 import { MessageCircle } from 'lucide-react'
-import { useLanguage } from '../../context/LanguageContext'
+import { t } from '../../lib/siteCopy'
 
 export default function ContactSection() {
-  const { t } = useLanguage()
   return (
     <section id="contact" className="py-16 sm:py-24 bg-gradient-to-b from-slate-900 via-slate-800/80 to-slate-900 border-t border-slate-700/50">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-w-0">
