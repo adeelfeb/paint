@@ -3,7 +3,7 @@ import PageHeader from '../../components/paint/PageHeader'
 import SectionExperience from '../../components/paint/SectionExperience'
 
 export const metadata = {
-  title: 'Experience | MOHMMED AL HJOUJ FOR INVESTMENT SPC',
+  title: 'Experience | MOHAMMAD ALHJOUJ FOR INVESTMENT SPC',
   description: 'Industrial project and defense coating experience in demanding sectors.',
 }
 

@@ -3,8 +3,9 @@ import PageHeader from '../../components/paint/PageHeader'
 import SectionOverview from '../../components/paint/SectionOverview'
 
 export const metadata = {
-  title: 'Overview | MOHMMED AL HJOUJ FOR INVESTMENT SPC',
-  description: 'Company overview and industrial coating profile.',
+  title: 'Overview | MOHAMMAD ALHJOUJ FOR INVESTMENT SPC',
+  description:
+    'Executive summary: protective coatings, waterproofing, construction chemicals, and HPC & UNICHEM representation in Oman.',
 }
 
 export default function OverviewPage() {
@@ -12,7 +13,7 @@ export default function OverviewPage() {
     <PageLayout>
       <PageHeader
         title="Company Overview"
-        description="Learn about our industrial coating background, sectors, and long-term asset protection expertise."
+        description="Background, sectors served, Vision 2040 alignment, and technical positioning across coatings, waterproofing, and construction chemicals."
       />
       <SectionOverview />
     </PageLayout>

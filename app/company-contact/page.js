@@ -3,7 +3,7 @@ import PageHeader from '../../components/paint/PageHeader'
 import SectionContact from '../../components/paint/SectionContact'
 
 export const metadata = {
-  title: 'Contact & Quote | MOHMMED AL HJOUJ FOR INVESTMENT SPC',
+  title: 'Contact & Quote | MOHAMMAD ALHJOUJ FOR INVESTMENT SPC',
   description: 'Contact information and quote request form for industrial coating projects.',
 }
 

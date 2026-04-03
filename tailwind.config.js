@@ -26,24 +26,24 @@ module.exports = {
           'amber-dark': '#d97706',
         },
         /**
-         * VIRON brand palette (industrial): matte black + dark grey + industrial green + soft orange.
-         * Keep the existing `brand-*` keys so the site updates globally.
+         * Brand palette: deep forest teal + warm accent — tuned for contrast & clarity on light UI.
          */
         brand: {
-          50: '#f2fbf7',
-          100: '#d7f3e6',
-          200: '#afe6cf',
-          300: '#7fd5b4',
-          400: '#4fc497',
-          500: '#1fb07a',
-          600: '#198f63',
-          700: '#156f4f',
-          800: '#125a41',
-          900: '#0f4634',
-          950: '#0b1711',
-          accent: '#f08a24',
-          'accent-light': '#ffb36a',
-          'accent-muted': '#fff1e3',
+          50: '#ecf8f3',
+          100: '#d1efe2',
+          200: '#a6dfc6',
+          300: '#6bc49a',
+          400: '#36a876',
+          500: '#1c9464',
+          600: '#157a54',
+          700: '#126347',
+          800: '#0f4f3a',
+          900: '#0c3d2e',
+          950: '#071a14',
+          accent: '#ea8c2d',
+          'accent-light': '#ffc078',
+          'accent-muted': '#fff4e8',
+          ink: '#0a1f18',
         },
       },
       fontFamily: {
@@ -70,6 +70,11 @@ module.exports = {
       },
       backgroundSize: {
         'shimmer': '200% 100%',
+      },
+      boxShadow: {
+        'brand-sm': '0 1px 2px rgba(12, 61, 46, 0.06), 0 4px 16px rgba(12, 61, 46, 0.06)',
+        'brand-md': '0 4px 6px rgba(12, 61, 46, 0.05), 0 12px 28px rgba(12, 61, 46, 0.08)',
+        'brand-glow': '0 0 0 1px rgba(21, 122, 84, 0.12), 0 8px 32px rgba(21, 122, 84, 0.12)',
       },
     },
   },

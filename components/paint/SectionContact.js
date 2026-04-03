@@ -62,7 +62,7 @@ export default function SectionContact() {
           >
             <h3 className="text-lg font-semibold text-slate-900 mb-3">Commitment</h3>
             <p className="text-slate-600 text-sm leading-relaxed">
-              MOHMMED AL HJOUJ FOR INVESTMENT SPC is committed to supporting Oil & Gas operators and contractors with technically compliant coating systems, reliable material supply, and long-term asset protection solutions.
+              MOHAMMAD ALHJOUJ FOR INVESTMENT SPC is committed to supporting operators and contractors with technically compliant systems, reliable material supply, on-site and off-site technical support, and long-term asset protection—across coatings, waterproofing, and construction chemicals.
             </p>
           </motion.div>
         </div>
@@ -101,25 +101,37 @@ export default function SectionContact() {
             className="rounded-2xl bg-slate-800 text-white p-6 sm:p-8 shadow-xl"
           >
             <h3 className="text-lg font-semibold mb-4">{t('footer.contact')}</h3>
-            <p className="font-semibold text-slate-200 mb-4">MOHMMED AL HJOUJ FOR INVESTMENT SPC</p>
+            <p className="font-semibold text-slate-200 mb-4">MOHAMMAD ALHJOUJ FOR INVESTMENT SPC</p>
             <ul className="space-y-2 text-slate-300 text-sm">
               <li className="flex items-center gap-2">
                 <span className="text-slate-400">C.R. No.</span> 1550745
               </li>
-              <li className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-slate-400 flex-shrink-0" />
-                PC: 121 Mabela Industrial Area, Sultanate of Oman
+              <li className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5" />
+                Head office: Sandan Industrial City, Muscat, Sultanate of Oman
               </li>
               <li>
                 <a href="tel:+96898539796" className="flex items-center gap-2 hover:text-white no-underline">
                   <Phone className="w-4 h-4 text-slate-400 flex-shrink-0" />
-                  Mobile: +968 98539796
+                  +968 9853 9796
+                </a>
+              </li>
+              <li>
+                <a href="tel:+96876009006" className="flex items-center gap-2 hover:text-white no-underline">
+                  <Phone className="w-4 h-4 text-slate-400 flex-shrink-0" />
+                  +968 7600 9006
                 </a>
               </li>
               <li>
                 <a href="mailto:M-alhouj@hpc-om.com" className="flex items-center gap-2 hover:text-white no-underline">
                   <Mail className="w-4 h-4 text-slate-400 flex-shrink-0" />
                   M-alhouj@hpc-om.com
+                </a>
+              </li>
+              <li>
+                <a href="mailto:hb.sales@hpc-om.co" className="flex items-center gap-2 hover:text-white no-underline">
+                  <Mail className="w-4 h-4 text-slate-400 flex-shrink-0" />
+                  hb.sales@hpc-om.co
                 </a>
               </li>
             </ul>

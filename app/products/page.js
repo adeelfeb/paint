@@ -3,7 +3,7 @@ import PageHeader from '../../components/paint/PageHeader'
 import SectionProducts from '../../components/paint/SectionProducts'
 
 export const metadata = {
-  title: 'Products | MOHMMED AL HJOUJ FOR INVESTMENT SPC',
+  title: 'Products | MOHAMMAD ALHJOUJ FOR INVESTMENT SPC',
   description: 'Browse industrial coating products and open full product details.',
 }
 

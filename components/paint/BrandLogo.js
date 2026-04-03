@@ -8,10 +8,10 @@ export default function BrandLogo({
   const ink = isOnDark ? '#ffffff' : '#0b0f0e' // matte black
   const plate = isOnDark ? 'rgba(255,255,255,0.10)' : '#ffffff'
   const plateStroke = isOnDark ? 'rgba(255,255,255,0.16)' : 'rgba(2,6,23,0.08)'
-  const green = '#198f63' // industrial green
-  const greenDark = '#156f4f'
-  const orange = '#f08a24' // soft orange
-  const orangeLight = '#ffb36a'
+  const green = '#157a54'
+  const greenDark = '#126347'
+  const orange = '#ea8c2d'
+  const orangeLight = '#ffc078'
 
   const dimProps = className ? {} : { width: size, height: size }
 

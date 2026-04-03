@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="VIRON">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="MOHAMMAD ALHJOUJ FOR INVESTMENT SPC">
   <defs>
     <linearGradient id="vironCoat" x1="18" y1="18" x2="46" y2="46" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#198f63"/>
-      <stop offset="1" stop-color="#156f4f"/>
+      <stop offset="0" stop-color="#157a54"/>
+      <stop offset="1" stop-color="#126347"/>
     </linearGradient>
     <linearGradient id="vironDrop" x1="28" y1="41" x2="38" y2="58" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#ffb36a"/>
-      <stop offset="1" stop-color="#f08a24"/>
+      <stop offset="0" stop-color="#ffc078"/>
+      <stop offset="1" stop-color="#ea8c2d"/>
     </linearGradient>
   </defs>
   <rect x="4.5" y="4.5" width="55" height="55" rx="16" fill="#ffffff" stroke="rgba(2,6,23,0.08)"/>

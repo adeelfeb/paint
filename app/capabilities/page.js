@@ -3,7 +3,7 @@ import PageHeader from '../../components/paint/PageHeader'
 import SectionCapabilities from '../../components/paint/SectionCapabilities'
 
 export const metadata = {
-  title: 'Capabilities | MOHMMED AL HJOUJ FOR INVESTMENT SPC',
+  title: 'Capabilities | MOHAMMAD ALHJOUJ FOR INVESTMENT SPC',
   description: 'Oil and gas technical capabilities for upstream and industrial facilities.',
 }
 

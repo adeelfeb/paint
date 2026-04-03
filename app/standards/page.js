@@ -3,7 +3,7 @@ import PageHeader from '../../components/paint/PageHeader'
 import SectionStandards from '../../components/paint/SectionStandards'
 
 export const metadata = {
-  title: 'Standards & QC | MOHMMED AL HJOUJ FOR INVESTMENT SPC',
+  title: 'Standards & QC | MOHAMMAD ALHJOUJ FOR INVESTMENT SPC',
   description: 'Technical standards and quality control procedures for coating applications.',
 }
 

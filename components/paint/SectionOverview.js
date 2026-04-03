@@ -21,13 +21,13 @@ export default function SectionOverview() {
           className="prose prose-slate max-w-none text-slate-600 leading-relaxed space-y-4"
         >
           <p>
-            <strong className="text-slate-800">MOHMMED AL HJOUJ FOR INVESTMENT SPC</strong> is a specialized supplier of high-performance industrial coating systems and corrosion protection solutions serving the Oil & Gas, petrochemical, mining, defense, and infrastructure sectors.
+            <strong className="text-slate-800">MOHAMMAD ALHJOUJ FOR INVESTMENT SPC</strong> is an Oman-based industrial solutions provider specialized in protective coatings, waterproofing systems, construction chemicals, and technical support. As the authorized representative of leading manufacturers such as HPC and UNICHEM, we serve oil & gas, petrochemical, power, cement, infrastructure, and construction—with local availability, reliable supply, and engineering guidance.
           </p>
           <p>
-            The company provides technically compliant coating solutions designed to perform in aggressive industrial environments including hydrocarbon exposure, chemical processing facilities, heavy industrial operations, and desert climatic conditions.
+            We combine local market knowledge with world-class products and QHSE standards. Our supply partners are certified to ISO 9001:2015 and ISO 14001:2015; we help customers reduce life-cycle costs, manage risk, and meet stringent specifications.
           </p>
           <p>
-            With extensive technical experience dating back to 2010, the company supports industrial operators, contractors, and infrastructure developers with reliable coating systems engineered for durability, safety, and long-term asset protection.
+            Headquartered in Muscat with logistics coverage across the Sultanate, we support operators, contractors, and developers with systems engineered for durability, safety, and long-term asset protection—aligned with Oman Vision 2040.
           </p>
         </motion.div>
       </div>

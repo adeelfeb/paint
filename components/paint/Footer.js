@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Phone, Mail, MapPin } from 'lucide-react'
+import { Globe, Phone, Mail, MapPin } from 'lucide-react'
 import { useLanguage } from '../../context/LanguageContext'
 import { CAPABILITY_PDF_PATH } from '../../lib/paintConstants'
 import BrandLogo from './BrandLogo'
@@ -20,13 +20,13 @@ export default function PaintFooter() {
                 <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 border border-white/20 ring-1 ring-white/10">
                   <BrandLogo variant="light" className="w-7 h-7" aria-hidden />
                 </span>
-                <span className="text-white font-extrabold tracking-[0.28em] text-sm uppercase">
-                  VIRON
+                <span className="text-white font-extrabold tracking-[0.08em] text-[11px] sm:text-xs uppercase leading-tight">
+                  MOHAMMAD ALHJOUJ
                 </span>
-                <span className="sr-only">VIRON</span>
+                <span className="sr-only">MOHAMMAD ALHJOUJ FOR INVESTMENT SPC</span>
               </div>
               <p className="text-brand-200/90 text-sm leading-relaxed">
-                Industrial Coatings • Corrosion Protection • Epoxy Systems. Serving Oil & Gas, petrochemical, mining, defense, and infrastructure in the Sultanate of Oman and the region.
+                Industrial coatings, waterproofing, construction chemicals & technical solutions. Partnering with Oman Vision 2040 for sustainable growth. Headquartered in Muscat with coverage across the Sultanate.
               </p>
             </div>
             <div>
@@ -45,20 +45,43 @@ export default function PaintFooter() {
             <div>
               <h4 className="font-semibold mb-4 text-white">{t('footer.contact')}</h4>
               <ul className="space-y-2 text-brand-200 text-sm">
-                <li className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-brand-accent-light flex-shrink-0" />
-                  PC: 121 Mabela Industrial Area, Sultanate of Oman
+                <li className="flex items-start gap-2">
+                  <MapPin className="w-4 h-4 text-brand-accent-light flex-shrink-0 mt-0.5" />
+                  Sandan Industrial City, Muscat, Sultanate of Oman
                 </li>
                 <li>
                   <a href="tel:+96898539796" className="flex items-center gap-2 hover:text-white no-underline">
                     <Phone className="w-4 h-4 text-brand-accent-light flex-shrink-0" />
-                    +968 98539796
+                    +968 9853 9796
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:+96876009006" className="flex items-center gap-2 hover:text-white no-underline">
+                    <Phone className="w-4 h-4 text-brand-accent-light flex-shrink-0" />
+                    +968 7600 9006
                   </a>
                 </li>
                 <li>
                   <a href="mailto:M-alhouj@hpc-om.com" className="flex items-center gap-2 hover:text-white no-underline">
                     <Mail className="w-4 h-4 text-brand-accent-light flex-shrink-0" />
                     M-alhouj@hpc-om.com
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:hb.sales@hpc-om.co" className="flex items-center gap-2 hover:text-white no-underline">
+                    <Mail className="w-4 h-4 text-brand-accent-light flex-shrink-0" />
+                    hb.sales@hpc-om.co
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://hpc-om.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 hover:text-white no-underline"
+                  >
+                    <Globe className="w-4 h-4 text-brand-accent-light flex-shrink-0" />
+                    hpc-om.com
                   </a>
                 </li>
               </ul>
@@ -68,7 +91,9 @@ export default function PaintFooter() {
       </section>
       <section className="py-4 border-t border-brand-800/80 bg-brand-950/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-brand-300/90 text-sm">
-          <p>© {year} VIRON. C.R. No.: 1550745. All rights reserved.</p>
+          <p>
+            © {year} MOHAMMAD ALHJOUJ FOR INVESTMENT SPC. C.R. No.: 1550745. All rights reserved.
+          </p>
         </div>
       </section>
     </footer>
